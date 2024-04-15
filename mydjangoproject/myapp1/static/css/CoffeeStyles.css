@@ -1,0 +1,137 @@
+body{
+    background-color: #F2F2F2;
+    padding: 0 0 0 10px;
+    margin: 0;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+p{
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+.overflow-ellipsis {
+    text-overflow: ellipsis;
+  }
+  
+  .overflow-string {
+    text-overflow: " [..]";
+  }
+a{
+    color:#000000;
+    text-decoration:none;
+}
+body::-webkit-scrollbar {
+    width: 6px;
+  }
+  body::-webkit-scrollbar-track {
+    background: grey;
+  }
+  body::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 50px;
+  }
+.HeaderTextHolder{
+    display:flex;
+    flex-direction: column;
+    width: 65%;
+}
+.splitter{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+img{
+    max-width: 150px;
+    max-height: 150px;
+}
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.headertextcontainer{
+    display: flex;
+    flex-direction: column;
+}
+#logo{
+    align-self: top;
+    margin-right: 50px;
+}
+h1{
+
+    margin: 0;
+    font-size: 100px;
+}
+.headerp{
+    text-align: center;
+    font-size: 20px;
+}
+.left{
+    width: 85%;
+    margin-left: 50px;
+}
+.right{
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    height: 150vh;
+    margin-left: 15px;
+}
+.RegLogContaienr{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #655D4A;
+    padding: 20px;
+}
+.AuthButt{
+    background-color: transparent;
+    border-width: 1px;
+    border-radius: 20px;
+    width: 60%;
+    margin-top: 5px;
+}
+.whitecube{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding:10%;
+}
+.themescontainer{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #A2987E;
+    color: #ffffff;
+    font-weight: bold;
+    padding-left: 15px;
+}
+.themebutt{
+    margin-bottom: 10px;
+    color: white;
+    font-weight:500;
+}
+.post{
+    margin-top: 10px;
+    display: flex;
+    padding: 10px;
+    width: 100%;
+}
+.textcontainer{
+    background-color: #D9D4C8;
+    margin: 0 20px 0 20px;
+    padding: 10px;
+}
+.postHeader{
+    font-size: 32px;
+}
+.postParagrhaph{
+    font-size: 20px;
+}

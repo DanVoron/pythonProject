@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="{% static 'img\Group 7.png' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css'%}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classic Forps</title>
+</head>
+<body>
+    <header>
+        <img id="logo" src="{% static 'img\logoforsite.svg' %}" alt="logo">
+        <div class="HeaderTextContainer">
+            <div class="HeaderTextHolder">
+                <label class="HeaderText">FORPS</label>
+                <label class="NormalText">ДЕНЬГИ ТАЧКИ ТЕЛКИ</label>
+            </div>
+
+        </div>
+    </header>
+    <main>
+        <div class="NewsContainer">
+            <div class="Posts">
+                <img id="News" src="{% static 'img\BUCKET.jpg' %}" alt="NewsPhoto">
+                <div class="NewsTextContaienr">
+                    <div class="WhiteCubeGlav"><a href="google.com">ЗАГОЛОВОК</a></div>
+                    <div class="WhiteCubeOpis"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum id corrupti porro temporibus, quidem ipsum
+                        voluptate perspiciatis voluptatibus similique provident
+                        et magni cum vel! Vero dolorem ipsum facere error exercitationem.</p></div>
+                </div>
+            </div>
+            <div class="Posts">
+                <img id="News" src="{% static 'img\BUCKET.jpg' %}" alt="NewsPhoto">
+                <div class="NewsTextContaienr">
+                    <div class="WhiteCubeGlav"><a href="google.com">ЗАГОЛОВОК</a></div>
+                    <div class="WhiteCubeOpis"> <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum id corrupti porro temporibus, quidem ipsum
+                        voluptate perspiciatis voluptatibus similique provident
+                        et magni cum vel! Vero dolorem ipsum facere error exercitationem.</p></div>
+                </div>
+            </div>
+            <div class="Posts">
+                <img id="News" src="{% static 'img\BUCKET.jpg' %}" alt="NewsPhoto">
+                <div class="NewsTextContaienr">
+                    <div class="WhiteCubeGlav"><a href="google.com">ЗАГОЛОВОК</a></div>
+                    <div class="WhiteCubeOpis"> <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum id corrupti porro temporibus, quidem ipsum
+                        voluptate perspiciatis voluptatibus similique provident
+                        et magni cum vel! Vero dolorem ipsum facere error exercitationem.</p></div>
+                </div>
+            </div>
+            <div class="Posts"></div>
+            <div class="Posts"></div>
+        </div>
+        <div class="NewsThemesContainer">
+            <div class="RegLogContaienr" >
+                <label>Логин <br> <input type="text"  value="DanVoron"></label>
+                <label>Пароль <br><input type="password" value="12345" p></label>
+                <button class="AuthButt">Войти</button>
+                <button class="AuthButt">Регестрация</button>
+            </div>
+            <p>Выберите тему:</p>
+            <div class="ThemesContainer">
+                <a class="archons" href="google.com" target="_blank">ДЕНЬГИ</a>
+                <a class="archons" href="google.com" target="_blank">ТАЧКИ</a>
+                <a class="archons" href="google.com" target="_blank">ТЕЛКИ</a>
+                <a class="archons" href="google.com" target="_blank">Тема</a>
+                <a class="archons" href="google.com" target="_blank">Тема</a>
+                <a class="archons" href="google.com" target="_blank">Тема</a>
+                <a class="archons" href="google.com" target="_blank">GG</a>
+                <a class="archons" href="google.com" target="_blank">Тема</a>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p class="footertext">Copyright © 2024 Forps</p>
+    </footer>
+</body>
+<script src="index.js"></script>
+</html>

@@ -1,0 +1,182 @@
+body{  
+    background-color: #171717;
+    margin:20px 20px 0 20px;
+    max-width: 1920px;
+}
+p{
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+.overflow-ellipsis {
+    text-overflow: ellipsis;
+  }
+  
+  .overflow-string {
+    text-overflow: " [..]";
+  }
+a{
+    color:#000000;
+    text-decoration:none;
+}
+body::-webkit-scrollbar {
+    width: 6px;
+  }
+  body::-webkit-scrollbar-track {
+    background: grey;
+  }
+  body::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 50px;
+  }
+.HeaderTextHolder{
+    display:flex;
+    flex-direction: column;
+    width: 65%;
+}
+#logo{
+    margin: 10px 0 0 10px;
+}
+header{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+}
+footer{
+    background-color: #ffffff;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+.footertext{
+    padding: 0 0 0 10px;
+}
+
+.HeaderTextContainer{
+    background-color: #ffffff;
+    width: 100%;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: fit-content;
+}
+
+.HeaderText,.NormalText{
+    margin: 0px 0px 20px 20px;
+    font-weight: bold;
+    text-align: center;
+}
+.HeaderText{
+    font-size: 150px;
+}
+.NormalText{
+    font-size: 32px;
+    font-weight: lighter;
+}
+.AuthButt{
+    width: 70%;
+    align-self: center;
+    border-radius: 20px;
+    background-color:transparent;
+    font-size: 16px;
+    font-weight:600;
+    margin-top: 5px;
+}
+
+.AuthButt:hover{
+    border-color: transparent;
+    background-color: #2e2e2e;
+    color: white;
+    cursor: pointer;
+}
+.AuthButt:active{
+    border-color: transparent;
+    background-color: #7c7c7c;
+    color: white;
+}
+.RegLogContaienr{
+    border: solid #000000;
+    border-width: 2px;
+    border-radius: 20px;
+    height: 12%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.ThemesContainer{
+    margin-top: -10px;
+    display: flex;
+    flex-direction: column;
+}
+
+input{
+    border-width: 2px;
+    font-size: 16px;
+    width: 60%;
+}
+main{
+    min-height: 500px;
+    display: flex;
+
+}
+.Posts{
+    background-color: #B5B5B5;
+    margin-bottom: 15px;
+    padding: 10px;
+    width: 100%;
+    height: 200px;
+    display: flex;
+}
+
+.NewsContainer{
+    background-color: #ffffff;
+    width: 100%;
+    min-height: 500px;
+    height:fit-content;
+    padding: 20px;
+}
+
+.archons{
+    margin-bottom: 3%;
+}
+
+.NewsThemesContainer{
+    background-color: #ffffff;
+    padding-left: 20px;
+    width: 20%;
+    min-height: 500px;
+    margin-left: 30px;
+    padding: 1% 2% 1% 2%;
+    font-size:24px;
+    display: flex;
+    flex-direction: column;
+}
+.WhiteCubeGlav{
+    background-color: #ffffff;
+    font-size: 32px;
+    width: 100%;
+    height: 25%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 1% 0 1%;
+    margin: 0 0 1% 0 ;
+}
+.WhiteCubeOpis{
+    background-color: #ffffff;
+    font-size: 20px;
+    width: 100%;
+    height: 65%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: top;
+    padding: 0 1% 0 1%;
+    margin: 0 0 1% 0 ;
+}
+.NewsTextContaienr{
+    padding: 10px;
+}
