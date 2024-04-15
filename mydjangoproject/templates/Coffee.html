@@ -19,41 +19,15 @@
                 </div>
             </header>
             <main>
-                <div class="post">
+                {%for i in data%}
+                    <div class="post">
                     <img src="{% static 'img/яжду-floppa.gif'%}" alt="">
                     <div class="textcontainer">
-                        <a class="postHeader" href="google.com">Заголовок</a>
-                        <p class="postParagrhaph">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam dolorum delectus praesentium a. Ratione, repellat expedita facere ipsum obcaecati velit!</p>
+                        <a class="postHeader" href="{% url 'post_list' i.pk %}">{{i.header}}</a>
+                        <p class="postParagrhaph">{{i.text}}</p>
                     </div>
                 </div>
-                <div class="post">
-                    <img src="{% static 'img/яжду-floppa.gif'%}" alt="">
-                    <div class="textcontainer">
-                        <a class="postHeader" href="google.com">Заголовок</a>
-                        <p class="postParagrhaph">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam dolorum delectus praesentium a. Ratione, repellat expedita facere ipsum obcaecati velit!</p>
-                    </div>
-                </div>
-                <div class="post">
-                    <img src="{% static 'img/яжду-floppa.gif'%}" alt="">
-                    <div class="textcontainer">
-                        <a class="postHeader" href="google.com">Заголовок</a>
-                        <p class="postParagrhaph">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam dolorum delectus praesentium a. Ratione, repellat expedita facere ipsum obcaecati velit!</p>
-                    </div>
-                </div>
-                <div class="post">
-                    <img src="{% static 'img/яжду-floppa.gif'%}" alt="">
-                    <div class="textcontainer">
-                        <a class="postHeader" href="google.com">Заголовок</a>
-                        <p class="postParagrhaph">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam dolorum delectus praesentium a. Ratione, repellat expedita facere ipsum obcaecati velit!</p>
-                    </div>
-                </div>
-                <div class="post">
-                    <img src="{% static 'img/яжду-floppa.gif'%}" alt="">
-                    <div class="textcontainer">
-                        <a class="postHeader" href="google.com">Заголовок</a>
-                        <p class="postParagrhaph">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam dolorum delectus praesentium a. Ratione, repellat expedita facere ipsum obcaecati velit!</p>
-                    </div>
-                </div>
+                {%endfor%}
             </main>
             <footer><p>Copyright © 2024 Forps</p></footer>
         </div>
@@ -68,7 +42,7 @@
                 </div>
             <div class="themescontainer">
                 <p>Выберите тему</p>
-                <a class="themebutt" href="google.com" targer="_blank">Тема</a>
+                <a class="themebutt" href="{% url 'index' %}" targer="_blank">Перейти на классику</a>
                 <a class="themebutt" href="google.com" targer="_blank">Тема</a>
                 <a class="themebutt" href="google.com" targer="_blank">Тема</a>
                 <a class="themebutt" href="google.com" targer="_blank">Тема</a>

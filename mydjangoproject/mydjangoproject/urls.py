@@ -18,11 +18,15 @@ from django.contrib import admin
 from django.urls import path
 from myapp1.views import index_page
 from myapp1.views import coffe_page
+from myapp1.views import post_list
 # from myapp1.views import about_page
+
+app_name='myapp1'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',index_page),
-    path('coffee/',coffe_page),
+    path('',index_page,name="index"),
+    path('coffee/',coffe_page,name="coffee"),
+    path('post/<int:pk>/',post_list,name='post_list')
     # path('about',about_page),
 ]

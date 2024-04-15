@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from myapp1.models import Worker
+from django.shortcuts import render, get_object_or_404
+from myapp1.models import Posts
 
 def index_page(request):
 
@@ -22,4 +24,17 @@ def index_page(request):
     return render(request, 'index.html')
 
 def coffe_page(request):
-    return render(request, 'Coffee.html')
+    # new_post = Posts(header='Amogus2', text='gege')
+    # new_post.save()
+
+    all_posts = Posts.objects.all()
+
+    # for i in all_posts:
+    #     print(f' {i.header}, {i.text}')
+
+    return render(request, 'Coffee.html', context={'data':all_posts})#контекст для передачи
+
+
+def post_list(request, pk):
+    post = get_object_or_404(Posts, pk=pk)
+    return render(request, 'blog/post_list.html', {'post': post})
