@@ -105,8 +105,8 @@ footer{
 }
 .RegLogContaienr{
     margin-top: 5%;
-    height: 15%;
     width: 80%;
+    height: 180px;
     display: flex;
     align-self: center;
     flex-direction: column;
@@ -195,4 +195,36 @@ main{
     width: 100%;
     padding: 10px;
     border-radius: 0 10px 10px 0;
+}
+
+.regPage{
+    visibility: hidden;
+    position: fixed;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+}
+.regMenu{
+    display: flex;
+    padding: 10% 0 10% 0;
+    flex-direction: column;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: space-around;
+    width: 35%;
+    height: 50%;
+    border-radius: 20px;
+    background-color: #ffffff;
+}
+.NewUserInput{
+    width: 50%;
+}
+.ExitButt{
+    box-sizing: border-box;
+    position: relative;
+    bottom:150%;
+    left: 45%;
 }

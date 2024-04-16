@@ -10,3 +10,90 @@
     display: flex;
     flex-direction: column;
 }
+.PostContainer{
+    background-color: #ffffff;
+    width: 95%;
+    min-height: 500px;
+    padding: 40px;
+}
+h2{
+    font-size: 52px;
+    margin: 2% 0 2% 0;
+}
+.PostTextContainer{
+    height: fit-content;
+    min-height: 200px;
+    border:solid black ;
+    border-width: 2px;
+    border-radius: 20px;
+    padding: 0 10px 0 10px;
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.25);
+    text-indent: 20px;
+    font-size: 18px;
+}
+.comment{
+    width: 99%;
+    resize: none;
+    border-radius: 20px;
+    font-size: 18px;
+    padding: 5px;
+    margin-top: 40px;
+    height: 200px;
+    border-radius: 20px;
+    text-align:left;
+}
+.CommContainer{
+    margin-top: 20px;
+    height: 200px;
+    border-radius: 20px;
+}
+.CommContainer{
+    background-color:#F1F1F1;
+    border-radius: 20px;
+}
+.UserContainer{
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 20px 20px 0 0 ;
+    padding: 10px;
+    height: 35%;
+    width: 100%;
+    background-color: #DFDFDF;
+}
+.CommLabel{ 
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 20px 20px 0 0 ;
+    padding: 5px 10px 5px 10px;
+    height: 35%;
+    width: 100%;
+    margin: 0;
+}
+.BackButt{
+    width: 5%;
+    height: 3%;
+    border-color: transparent;
+    background-color: #dddddd;
+    color: #6e6e6e;
+    border-radius: 50px;
+}
+.BackButt:hover{
+    cursor: pointer;
+    background-color: #aaaaaa;
+}
+.BackButt:active{
+    background-color: #cccccc;
+}
+.OstavComm{
+    margin-top: 5px;
+    height: 100px;
+    width: 12%;
+    align-self:flex-end;
+    background-color: transparent;
+}
+.NewCommentsContainer{
+    display: flex;
+    flex-direction: column;
+}

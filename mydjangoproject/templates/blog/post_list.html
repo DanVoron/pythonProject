@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="{% static 'css/index.css'%}">
     <link rel="stylesheet" href="{% static 'css/PostListStyles.css'%}">
     <title>Пост "{{ post.header}}"</title>
-
 </head>
 <body>
     <header>
@@ -20,14 +19,33 @@
         </div>
     </header>
     <main>
-    <div class="NewsContainer">
-        <button>&lt;</button>
+    <div class="PostContainer">
+        <button class="BackButt" onclick="document.location='{% url 'index' %}'">&lt;&lt;&lt;</button>
         <h2>{{ post.header }}</h2>
-        <p>{{ post.text }}</p>
-        <input type="text" value="Текст для коммента">
+        <div class="PostTextContainer">
+            <p>      {{ post.text }}</p>
+        </div>
+        <div class="NewCommentsContainer">
+            <textarea  class="comment" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto eius maxime sed, dignissimos dicta quod, asperiores excepturi perspiciatis autem ratione alias hic earum voluptates ipsam minus ad cum quam natus.</textarea>
+            <button class="OstavComm">Добавить комментарий</button>
+        </div>
         <div class="CommContainer">
-            <label >Пользователь</label>
-            <label >Комментарий</label>
+            <div class="UserContainer">
+                <label class="UserLabel" >Пользователь <br></label>
+            </div>
+            <label class="CommLabel">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, nam eum eligendi impedit numquam quod modi repellat commodi. Iste ea provident aperiam tenetur magnam officiis, quo fugiat ullam illo delectus assumenda repellendus omnis dolorum voluptates earum neque est saepe. Minus?</label>
+        </div>
+        <div class="CommContainer">
+            <div class="UserContainer">
+                <label class="UserLabel" >Пользователь <br></label>
+            </div>
+            <label class="CommLabel">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, nam eum eligendi impedit numquam quod modi repellat commodi. Iste ea provident aperiam tenetur magnam officiis, quo fugiat ullam illo delectus assumenda repellendus omnis dolorum voluptates earum neque est saepe. Minus?</label>
+        </div>
+        <div class="CommContainer">
+            <div class="UserContainer">
+                <label class="UserLabel" >Пользователь <br></label>
+            </div>
+            <label class="CommLabel">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, nam eum eligendi impedit numquam quod modi repellat commodi. Iste ea provident aperiam tenetur magnam officiis, quo fugiat ullam illo delectus assumenda repellendus omnis dolorum voluptates earum neque est saepe. Minus?</label>
         </div>
     </div>
     <div class="NewsThemesContainer">
@@ -55,6 +73,5 @@
     <footer>
         <p class="footertext">Copyright © 2024 Forps</p>
     </footer>
-
 </body>
 </html>
