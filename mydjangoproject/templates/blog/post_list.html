@@ -1,11 +1,59 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/index.css'%}">
+    <link rel="stylesheet" href="{% static 'css/PostListStyles.css'%}">
+    <title>Пост "{{ post.header}}"</title>
+
 </head>
 <body>
-    <h2>{{ post.header }}</h2>
-    <p>{{ post.text }}</p>
+    <header>
+        <img id="logo" src="{% static 'img\logoforsite.svg' %}" alt="logo">
+        <div class="HeaderTextContainer">
+            <div class="HeaderTextHolder">
+                <label class="HeaderText">FORPS</label>
+                <label class="NormalText">ДЕНЬГИ ТАЧКИ ТЕЛКИ</label>
+            </div>
+
+        </div>
+    </header>
+    <main>
+    <div class="NewsContainerlist">
+        <button>&lt;</button>
+        <h2>{{ post.header }}</h2>
+        <p>{{ post.text }}</p>
+        <input type="text" value="Текст для коммента">
+        <div class="CommContainer">
+            <label >Пользователь</label>
+            <label >Комментарий</label>
+        </div>
+    </div>
+    <div class="NewsThemesContainer">
+        <div class="RegLogContaienr" >
+            <label>Логин <br> <input type="text"  value="DanVoron"></label>
+            <label>Пароль <br><input type="password" value="12345" p></label>
+            <button class="AuthButt">Войти</button>
+            <button class="AuthButt">Регестрация</button>
+            </div>
+        </div>
+        <p>Выберите тему:</p>
+        <div class="ThemesContainer">
+            <a class="archons" href="{% url 'coffee' %}" targer="_blank">Перейти на кофе</a>
+            <a class="archons" href="google.com" target="_blank">ДЕЬНГИ</a>
+            <a class="archons" href="google.com" target="_blank">ТАЧКИ</a>
+            <a class="archons" href="google.com" target="_blank">ТЕЛКИ</a>
+            <a class="archons" href="google.com" target="_blank">Тема</a>
+            <a class="archons" href="google.com" target="_blank">Тема</a>
+            <a class="archons" href="google.com" target="_blank">GG</a>
+            <a class="archons" href="google.com" target="_blank">Тема</a>
+        </div>
+    </div>
+    </main>
+    <footer>
+        <p class="footertext">Copyright © 2024 Forps</p>
+    </footer>
+
 </body>
 </html>

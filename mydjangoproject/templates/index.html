@@ -21,35 +21,17 @@
     </header>
     <main>
         <div class="NewsContainer">
+            {%for i in data%}
+
+
             <div class="Posts">
                 <img id="News" src="{% static 'img\BUCKET.jpg' %}" alt="NewsPhoto">
                 <div class="NewsTextContaienr">
-                    <div class="WhiteCubeGlav"><a href="google.com">ЗАГОЛОВОК</a></div>
-                    <div class="WhiteCubeOpis"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum id corrupti porro temporibus, quidem ipsum
-                        voluptate perspiciatis voluptatibus similique provident
-                        et magni cum vel! Vero dolorem ipsum facere error exercitationem.</p></div>
+                    <div class="WhiteCubeGlav"><a href="{% url 'post_list' i.pk %}">{{i.header}}</a></div>
+                    <div class="WhiteCubeOpis"><p>{{i.text}}</p></div>
                 </div>
             </div>
-            <div class="Posts">
-                <img id="News" src="{% static 'img\BUCKET.jpg' %}" alt="NewsPhoto">
-                <div class="NewsTextContaienr">
-                    <div class="WhiteCubeGlav"><a href="google.com">ЗАГОЛОВОК</a></div>
-                    <div class="WhiteCubeOpis"> <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum id corrupti porro temporibus, quidem ipsum
-                        voluptate perspiciatis voluptatibus similique provident
-                        et magni cum vel! Vero dolorem ipsum facere error exercitationem.</p></div>
-                </div>
-            </div>
-            <div class="Posts">
-                <img id="News" src="{% static 'img\BUCKET.jpg' %}" alt="NewsPhoto">
-                <div class="NewsTextContaienr">
-                    <div class="WhiteCubeGlav"><a href="google.com">ЗАГОЛОВОК</a></div>
-                    <div class="WhiteCubeOpis"> <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum id corrupti porro temporibus, quidem ipsum
-                        voluptate perspiciatis voluptatibus similique provident
-                        et magni cum vel! Vero dolorem ipsum facere error exercitationem.</p></div>
-                </div>
-            </div>
-            <div class="Posts"></div>
-            <div class="Posts"></div>
+            {%endfor%}
         </div>
         <div class="NewsThemesContainer">
             <div class="RegLogContaienr" >
@@ -60,7 +42,7 @@
             </div>
             <p>Выберите тему:</p>
             <div class="ThemesContainer">
-                <a class="themebutt" href="{% url 'coffee' %}" targer="_blank">Перейти на кофе</a>
+                <a class="archons" href="{% url 'coffee' %}" targer="_blank">Перейти на кофе</a>
                 <a class="archons" href="google.com" target="_blank">ДЕЬНГИ</a>
                 <a class="archons" href="google.com" target="_blank">ТАЧКИ</a>
                 <a class="archons" href="google.com" target="_blank">ТЕЛКИ</a>
@@ -75,5 +57,4 @@
         <p class="footertext">Copyright © 2024 Forps</p>
     </footer>
 </body>
-<script src="index.js"></script>
 </html>
