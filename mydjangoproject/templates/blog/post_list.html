@@ -20,7 +20,7 @@
         </div>
     </header>
     <main>
-    <div class="NewsContainerlist">
+    <div class="NewsContainer">
         <button>&lt;</button>
         <h2>{{ post.header }}</h2>
         <p>{{ post.text }}</p>
@@ -36,18 +36,19 @@
             <label>Пароль <br><input type="password" value="12345" p></label>
             <button class="AuthButt">Войти</button>
             <button class="AuthButt">Регестрация</button>
+            <hr>
             </div>
-        </div>
-        <p>Выберите тему:</p>
-        <div class="ThemesContainer">
-            <a class="archons" href="{% url 'coffee' %}" targer="_blank">Перейти на кофе</a>
-            <a class="archons" href="google.com" target="_blank">ДЕЬНГИ</a>
-            <a class="archons" href="google.com" target="_blank">ТАЧКИ</a>
-            <a class="archons" href="google.com" target="_blank">ТЕЛКИ</a>
-            <a class="archons" href="google.com" target="_blank">Тема</a>
-            <a class="archons" href="google.com" target="_blank">Тема</a>
-            <a class="archons" href="google.com" target="_blank">GG</a>
-            <a class="archons" href="google.com" target="_blank">Тема</a>
+            <p>Выберите тему:</p>
+            <div class="ThemesContainer">
+                <a class="archons" href="{% url 'coffee' %}" targer="_blank">Перейти на кофе</a>
+                <a class="archons" href="google.com" target="_blank">ДЕЬНГИ</a>
+                <a class="archons" href="google.com" target="_blank">ТАЧКИ</a>
+                <a class="archons" href="google.com" target="_blank">ТЕЛКИ</a>
+                <a class="archons" href="google.com" target="_blank">Тема</a>
+                <a class="archons" href="google.com" target="_blank">Тема</a>
+                <a class="archons" href="google.com" target="_blank">GG</a>
+                <a class="archons" href="google.com" target="_blank">Тема</a>
+            </div>
         </div>
     </div>
     </main>
