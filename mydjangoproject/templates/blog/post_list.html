@@ -10,14 +10,18 @@
 <body>
     <div class="regPage">
         <div class="regMenu">
-            <button id="extBUTT" class="ExitButt" onclick="Goida()">X</button>
-            <label >Логин</label>
-            <input class="NewUserInput" value="DanVoron">
-            <label >Пароль</label>
-            <input class="NewUserInput" type="password">
-            <label >Пароль ещё раз</label>
-            <input class="NewUserInput" type="password">
-            <button>ГОЙДА!</button>
+            <div class="regContainer">
+                <button id="extBUTT" class="ExitButt" onclick="Goida()">X</button>
+                <label class="regMenuRowLabel">Имя</label>
+                <input class="NewUserInput" value="DanVoron">
+                <label class="regMenuRowLabel" >Логин</label>
+                <input class="NewUserInput" value="DanVoron">
+                <label class="regMenuRowLabel">Пароль</label>
+                <input class="NewUserInput" type="password" value="1234">
+                <label class="regMenuRowLabel">Пароль ещё раз</label>
+                <input class="NewUserInput" type="password" value="1234">
+                <button id="RegButt">ПОДТВЕРДИТЬ</button>
+            </div>
         </div>
     </div>
     <header>

@@ -17,8 +17,7 @@ button:active{
     cursor: pointer;
 }
 p{
-    overflow: hidden;
-    text-overflow:ellipsis;
+
 }
 .overflow-ellipsis {
     text-overflow: ellipsis;
@@ -205,6 +204,7 @@ main{
     align-items: top;
     overflow-wrap: inherit;
     margin: 0 0 1% 0 ;
+    vertical-align: top;
 }
 .NewsTextContaienr{
     background-color: #ffffff;
