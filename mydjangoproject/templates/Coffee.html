@@ -23,8 +23,8 @@
                     <div class="post">
                     <img src="{% static 'img/яжду-floppa.gif'%}" alt="">
                     <div class="textcontainer">
-                        <a class="postHeader" href="{% url 'post_list' i.pk %}">{{i.header}}</a>
-                        <p class="postParagrhaph">{{i.text}}</p>
+                        <a class="postHeader" href="{% url 'post_list' i.pk %}">{{i.head}}</a>
+                        <p class="postParagrhaph">{{i.content}}</p>
                     </div>
                 </div>
                 {%endfor%}

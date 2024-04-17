@@ -1,7 +1,9 @@
 from django.contrib import admin
-from myapp1.models import Worker
-from myapp1.models import Posts
+from .models import Topic, Role, User_Accaunt, Post, Comment
 
-
-admin.site.register(Worker)
-admin.site.register(Posts)
+# Register your models here.
+admin.site.register(Topic)
+admin.site.register(Role)
+admin.site.register(User_Accaunt)
+admin.site.register(Post)
+admin.site.register(Comment)

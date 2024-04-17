@@ -43,8 +43,8 @@
             <div class="Posts">
                 <img id="News" src="{% static 'img\BUCKET.jpg' %}" alt="NewsPhoto">
                 <div class="NewsTextContaienr">
-                    <div class="WhiteCubeGlav"><a href="{% url 'post_list' i.pk %}">{{i.header}}</a></div>
-                    <div class="WhiteCubeOpis"><p>{{i.text}}</p></div>
+                    <div class="WhiteCubeGlav"><a href="{% url 'post_list' i.pk %}">{{i.head}}</a></div>
+                    <div class="WhiteCubeOpis" ><p class="PostText" maxlength="5">{{i.content}}</p></div>
                 </div>
             </div>
             {%endfor%}
@@ -59,13 +59,9 @@
             <p>Выберите тему:</p>
             <div class="ThemesContainer">
                 <a class="archons" href="{% url 'coffee' %}" targer="_blank">Перейти на кофе</a>
-                <a class="archons" href="google.com" target="_blank">ДЕЬНГИ</a>
-                <a class="archons" href="google.com" target="_blank">ТАЧКИ</a>
-                <a class="archons" href="google.com" target="_blank">ТЕЛКИ</a>
-                <a class="archons" href="google.com" target="_blank">Тема</a>
-                <a class="archons" href="google.com" target="_blank">Тема</a>
-                <a class="archons" href="google.com" target="_blank">GG</a>
-                <a class="archons" href="google.com" target="_blank">Тема</a>
+                {%for i in topics%}
+                <a class="archons" href="{% url 'index_page_themed' i.pk %}" > {{i.name}}</a>
+                {%endfor%}
             </div>
         </div>
     </main>

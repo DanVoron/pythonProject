@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{% static 'css/index.css'%}">
     <link rel="stylesheet" href="{% static 'css/PostListStyles.css'%}">
-    <title>Пост "{{ post.header}}"</title>
+    <title>Пост "{{ post.head}}"</title>
 </head>
 <body>
     <div class="regPage">
@@ -37,9 +37,9 @@
     <main>
     <div class="PostContainer">
         <button class="BackButt" onclick="document.location='{% url 'index' %}'">&lt;&lt;&lt;</button>
-        <h2>{{ post.header }}</h2>
+        <h2>{{ post.head }}</h2>
         <div class="PostTextContainer">
-            <p>      {{ post.text }}</p>
+            <p>      {{ post.content }}</p>
         </div>
         <div class="NewCommentsContainer">
             <textarea  class="comment" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto eius maxime sed, dignissimos dicta quod, asperiores excepturi perspiciatis autem ratione alias hic earum voluptates ipsam minus ad cum quam natus.</textarea>
@@ -75,13 +75,9 @@
             <p>Выберите тему:</p>
             <div class="ThemesContainer">
                 <a class="archons" href="{% url 'coffee' %}" targer="_blank">Перейти на кофе</a>
-                <a class="archons" href="google.com" target="_blank">ДЕЬНГИ</a>
-                <a class="archons" href="google.com" target="_blank">ТАЧКИ</a>
-                <a class="archons" href="google.com" target="_blank">ТЕЛКИ</a>
-                <a class="archons" href="google.com" target="_blank">Тема</a>
-                <a class="archons" href="google.com" target="_blank">Тема</a>
-                <a class="archons" href="google.com" target="_blank">GG</a>
-                <a class="archons" href="google.com" target="_blank">Тема</a>
+                {%for i in topics%}
+                <a class="archons" href="{% url 'coffee' %}" > {{i.name}}</a>
+                {%endfor%}
             </div>
         </div>
     </div>

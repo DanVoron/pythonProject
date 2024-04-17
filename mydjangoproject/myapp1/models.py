@@ -1,18 +1,51 @@
 from django.db import models
 
+class Topic(models.Model):
+    id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=40)
 
-class Worker(models.Model): #Создание таблицы
-    name = models.CharField(max_length=20,blank=False)
-    second_name=models.CharField(max_length=20,blank=False)
-    salary = models.IntegerField(default=0)
+    class Meta:
+        managed = False
+        db_table = 'topic'
 
-    def __str__(self): #это для вывода красивого в админ панель
-        return f'{self.second_name} {self.name}'
+class Role(models.Model):
+    id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=15)
 
+    class Meta:
+        managed = False
+        db_table = 'role'
 
-class Posts(models.Model):
-    header=models.CharField(max_length=40,blank=False)
-    text=models.CharField(max_length=350,blank=False)
+class User_Accaunt(models.Model):
+    id = models.IntegerField(primary_key=True)
+    username = models.CharField(max_length=25)
+    login = models.CharField(max_length=25)
+    password = models.CharField(max_length=30)
+    role_id = models.IntegerField()
 
-    def __str__(self):
-        return f'{self.header}'
+    class Meta:
+        managed = False
+        db_table = 'user_account'
+
+class Post(models.Model):
+    id = models.IntegerField(primary_key=True)
+    head = models.CharField(max_length=100)
+    content = models.CharField(max_length=10000)
+    publish_datetime = models.DateTimeField()
+    topic_id = models.IntegerField()
+    image = models.CharField(max_length=1000)
+
+    class Meta:
+        managed = False
+        db_table = 'post'
+
+class Comment(models.Model):
+    id = models.IntegerField(primary_key=True)
+    post_id = models.IntegerField()
+    user_id = models.IntegerField()
+    content = models.CharField(max_length=250)
+    publish_datetime = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'comment'

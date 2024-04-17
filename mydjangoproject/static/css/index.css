@@ -17,7 +17,13 @@ button:active{
     cursor: pointer;
 }
 p{
-
+    overflow: hidden;
+    white-space:pre-line;
+    text-overflow: ellipsis;
+}
+.PostText{
+    height: 80%;
+    text-indent: 10px;
 }
 .overflow-ellipsis {
     text-overflow: ellipsis;
