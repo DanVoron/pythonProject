@@ -1,7 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&family=Zen+Antique&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Antique&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poiret+One&family=Zen+Antique&display=swap');
 body{  
     background-color: #171717;
     margin:0px 20px 0 20px;
     max-width: 1920px;
+    font-family: "Montserrat";
+}
+
+button:hover{
+    background-color: rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+button:active{
+    background-color: rgba(0,0,0,0.3);
+    cursor: pointer;
 }
 p{
     overflow: hidden;
@@ -74,11 +87,17 @@ footer{
     text-align: center;
 }
 .HeaderText{
+    font-family: "Zen Antique";
+    font-weight: lighter;
     font-size: 150px;
+    margin-top: -25px;
 }
 .NormalText{
+    font-family: "Poiret One";
     font-size: 32px;
     font-weight: lighter;
+    margin-bottom: 25px;
+    margin-top: -30px;
 }
 .AuthButt{
     width: 70%;
@@ -93,15 +112,12 @@ footer{
 }
 
 .AuthButt:hover{
-    border-color: transparent;
-    background-color: #2e2e2e;
-    color: white;
+    border-color: solid black;
     cursor: pointer;
 }
 .AuthButt:active{
     border-color: transparent;
     background-color: #7c7c7c;
-    color: white;
 }
 .RegLogContaienr{
     margin-top: 5%;
@@ -213,18 +229,49 @@ main{
     flex-direction: column;
     box-sizing: border-box;
     align-items: center;
-    justify-content: space-around;
-    width: 35%;
-    height: 50%;
+    justify-content:center;
+    width: 20%;
+    height: 40%;
     border-radius: 20px;
     background-color: #ffffff;
 }
 .NewUserInput{
-    width: 50%;
+    width: 97%;
+    margin-bottom: 3%;
+    border-radius: 8px;
+    border-width: 2px;
+    border-color: #808080;
+    box-shadow: 3px 3px 2px rgba(0,0,0,0.5);
 }
 .ExitButt{
     box-sizing: border-box;
     position: relative;
-    bottom:150%;
-    left: 45%;
+    bottom:10%;
+    left: 100%;
+    background-color: transparent;
+    border-radius: 250px;
+    height: 50%;
+    width: fit-content;
+    text-align: center;
+}
+
+.regContainer{
+    display: flex;
+    flex-direction: column;
+}
+#RegButt{
+    background-color: transparent;
+    border-radius: 20px;
+    border-width: 2px;
+    padding: 5px;
+    border-color: #808080;
+    box-shadow: 3px 3px 2px rgba(0,0,0,0.5);
+    align-self: center;
+    width: fit-content;
+}
+#RegButt:hover{
+    background-color: rgba(0,0,0,0.1);
+}
+#RegButt:active{
+    background-color: rgba(0,0,0,0.3);
 }

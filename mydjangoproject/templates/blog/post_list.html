@@ -8,6 +8,18 @@
     <title>Пост "{{ post.header}}"</title>
 </head>
 <body>
+    <div class="regPage">
+        <div class="regMenu">
+            <button id="extBUTT" class="ExitButt" onclick="Goida()">X</button>
+            <label >Логин</label>
+            <input class="NewUserInput" value="DanVoron">
+            <label >Пароль</label>
+            <input class="NewUserInput" type="password">
+            <label >Пароль ещё раз</label>
+            <input class="NewUserInput" type="password">
+            <button>ГОЙДА!</button>
+        </div>
+    </div>
     <header>
         <img id="logo" src="{% static 'img\logoforsite.svg' %}" alt="logo">
         <div class="HeaderTextContainer">
@@ -53,7 +65,7 @@
             <label>Логин <br> <input type="text"  value="DanVoron"></label>
             <label>Пароль <br><input type="password" value="12345" p></label>
             <button class="AuthButt">Войти</button>
-            <button class="AuthButt">Регестрация</button>
+            <button class="AuthButt" onclick="Goida2()">Регистрация</button>
             <hr>
             </div>
             <p>Выберите тему:</p>
@@ -74,4 +86,5 @@
         <p class="footertext">Copyright © 2024 Forps</p>
     </footer>
 </body>
+<script src="{% static 'JS/index.js' %}"></script>
 </html>
