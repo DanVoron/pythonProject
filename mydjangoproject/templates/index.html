@@ -30,20 +30,28 @@
         <div class="HeaderTextContainer">
             <div class="HeaderTextHolder">
                 <label class="HeaderText">FORPS</label>
-                <label class="NormalText">ДЕНЬГИ ТАЧКИ ТЕЛКИ</label>
+                <label class="NormalText">ДЕНЬГИ– ХОРОШИЙ СЛУГА, НО ПЛОХОЙ ХОЗЯИН.</label>
             </div>
 
         </div>
     </header>
     <main>
         <div class="NewsContainer">
+            <div class="AdminAddingButt">
+                <button id="AddPostButt">Добавить <br> новость</button>
+                <p >Добро пожаловать, Админ!</p>
+            </div>
             {%for i in data%}
-
-
             <div class="Posts">
                 <img id="News" src="{% static 'img\BUCKET.jpg' %}" alt="NewsPhoto">
                 <div class="NewsTextContaienr">
-                    <div class="WhiteCubeGlav"><a href="{% url 'post_list' i.pk %}">{{i.head}}</a></div>
+                    <div class="WhiteCubeGlav">
+                        <a href="{% url 'post_list' i.pk %}">{{i.head}}</a> 
+                        <div class="PostAddButtsContainer">
+                            <button class="PostButts"> <img class="PostButtsPhotos" src="{% static 'img/ediit.svg' %}" alt="edit"></button>
+                            <button class="PostButts"> <img class="PostButtsPhotos" src="{% static 'img/traaash.svg' %}" alt="del"></button>
+                        </div>
+                    </div>
                     <div class="WhiteCubeOpis" ><p class="PostText" maxlength="5">{{i.content}}</p></div>
                 </div>
             </div>
@@ -56,7 +64,11 @@
                 <button class="AuthButt">Войти</button>
                 <button class="AuthButt" onclick="Goida2()">Регистрация</button>
             </div>
-            <p>Выберите тему:</p>
+            <div class="UserQuitContainer" >
+                <label>Большые шлепки</label>
+                <button class="AuthButt userquitButt">Выйти</button>
+            </div>
+            <p><b>Выбрать тему:</b></p>
             <div class="ThemesContainer">
                 <a class="archons" href="{% url 'coffee' %}" target="_blank">Перейти на кофе</a>
 
