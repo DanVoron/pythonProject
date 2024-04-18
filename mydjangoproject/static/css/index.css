@@ -134,6 +134,7 @@ footer{
     justify-content: space-between;
 }
 .UserQuitContainer{
+    
     margin-top: 5%;
     width: 80%;
     height: 80px;
@@ -143,6 +144,7 @@ footer{
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    display: none;
 }
 
 .ThemesContainer{
@@ -292,6 +294,7 @@ main{
     background-color: rgba(0,0,0,0.3);
 }
 .PostAddButtsContainer{
+
     height: 100%;
     width: 10%;
     display: flex;
@@ -299,6 +302,7 @@ main{
     align-items: center;
     align-self:center;
     justify-self: end;
+    display: none;
 }
 .PostButts{
     
@@ -315,6 +319,7 @@ main{
     height: 100%;
 }
 .AdminAddingButt{
+
     height: 120px;
     margin-left: 15px;
     margin-bottom: 15px;
@@ -323,6 +328,7 @@ main{
     font-size: 40px;
     font-weight: 500;
     font-family: "Zen Antique";
+    display: none;
 }
 #AddPostButt{
     font-size: 18px;

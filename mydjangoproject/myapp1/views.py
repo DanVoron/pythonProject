@@ -16,7 +16,7 @@ def index_page(request):
             if user is not None:
                 print(user.role_id)
                 request.session['role_id'] = user.role_id
-                return render(request, 'Coffee.html', context={'data': all_posts, 'topics': all_themes})
+                return render(request, 'index.html', context={'data': all_posts, 'topics': all_themes, 'urmom' : user.role_id })
             else:
                 print("Somsyng BAD IDI NAHUI NOOB")
                 return redirect('/')

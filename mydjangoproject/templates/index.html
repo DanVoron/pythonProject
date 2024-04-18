@@ -14,13 +14,13 @@
             <div class="regContainer">
                 <button id="extBUTT" class="ExitButt" onclick="Goida()">X</button>
                 <label class="regMenuRowLabel">Имя</label>
-                <input class="NewUserInput" value="DanVoron">
+                <input class="NewUserInput" value="">
                 <label class="regMenuRowLabel" >Логин</label>
-                <input class="NewUserInput" value="DanVoron">
+                <input class="NewUserInput" value="">
                 <label class="regMenuRowLabel">Пароль</label>
-                <input class="NewUserInput" type="password" value="1234">
+                <input class="NewUserInput" type="password" value="">
                 <label class="regMenuRowLabel">Пароль ещё раз</label>
-                <input class="NewUserInput" type="password" value="1234">
+                <input class="NewUserInput" type="password" value="">
                 <button id="RegButt">ПОДТВЕРДИТЬ</button>
             </div>
         </div>
@@ -58,19 +58,29 @@
             {%endfor%}
         </div>
         <div class="NewsThemesContainer">
-            <div class="RegLogContaienr" >
-                <form method="post" action="">
+            
+
+            {% if s == null %}
+            <div class="RegLogContaienr">
+                <form  method="post" action="">
                     {% csrf_token %}
-                    <label>Логин <br> <input type="text" name="username" placeholder="Username" value="DanVoron"></label>
-                    <label>Пароль <br><input type="password" name="password" placeholder="Password" value="12345"></label>
-                    <button class="AuthButt">Войти</button>
-                    <button class="AuthButt" onclick="Goida2()">Регистрация</button>
+                    <label>Логин <br> <input type="text" name="username" placeholder="Username" ></label>
+                    <label>Пароль <br><input type="password" name="password" placeholder="Password" ></label>
+                    <button class="AuthButt"> {{ urmom }} </button>
                 </form>
+
+                <button class="AuthButt" onclick="Goida2()">Регистрация</button>
+                
             </div>
+            {% endif %}
+
+            {% if urmom == 2 %}
             <div class="UserQuitContainer" >
-                <label>Большые шлепки</label>
+                <label>fsaf</label>
                 <button class="AuthButt userquitButt">Выйти</button>
             </div>
+            {% endif %}
+
             <p><b>Выбрать тему:</b></p>
             <div class="ThemesContainer">
                 <a class="archons" href="{% url 'coffee' %}" target="_blank">Перейти на кофе</a>
