@@ -26,7 +26,7 @@
         </div>
     </div>
     <header>
-        <img id="logo" src="{% static 'img\logoforsite.svg' %}" alt="logo">
+        <a class="LogoAnchor" href="{% url 'index' %}"><img id="logo" src="{% static 'img\logoforsite.svg' %}" alt="logo"></a>
         <div class="HeaderTextContainer">
             <div class="HeaderTextHolder">
                 <label class="HeaderText">FORPS</label>
@@ -58,7 +58,8 @@
             </div>
             <p>Выберите тему:</p>
             <div class="ThemesContainer">
-                <a class="archons" href="{% url 'coffee' %}" targer="_blank">Перейти на кофе</a>
+                <a class="archons" href="{% url 'coffee' %}" target="_blank">Перейти на кофе</a>
+
                 {%for i in topics%}
                 <a class="archons" href="{% url 'index_page_themed' i.pk %}" > {{i.name}}</a>
                 {%endfor%}

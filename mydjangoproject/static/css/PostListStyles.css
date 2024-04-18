@@ -20,6 +20,10 @@ h2{
     font-size: 52px;
     margin: 2% 0 2% 0;
 }
+.HeaderContainer{
+    display: flex;
+    align-items: center;
+}
 .PostTextContainer{
     height: fit-content;
     min-height: 200px;
@@ -73,7 +77,7 @@ h2{
 }
 .BackButt{
     width: 5%;
-    height: 3%;
+    height: 40px;
     border-color: transparent;
     background-color: #dddddd;
     color: #6e6e6e;

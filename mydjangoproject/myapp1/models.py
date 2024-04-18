@@ -8,6 +8,9 @@ class Topic(models.Model):
         managed = False
         db_table = 'topic'
 
+    def str(self):
+        return self.name
+
 class Role(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=15)
@@ -15,6 +18,9 @@ class Role(models.Model):
     class Meta:
         managed = False
         db_table = 'role'
+
+    def str(self):
+        return self.name
 
 class User_Accaunt(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -26,6 +32,9 @@ class User_Accaunt(models.Model):
     class Meta:
         managed = False
         db_table = 'user_account'
+
+    def str(self):
+        return self.username
 
 class Post(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -39,6 +48,9 @@ class Post(models.Model):
         managed = False
         db_table = 'post'
 
+    def str(self):
+        return self.head
+
 class Comment(models.Model):
     id = models.IntegerField(primary_key=True)
     post_id = models.IntegerField()
@@ -49,3 +61,6 @@ class Comment(models.Model):
     class Meta:
         managed = False
         db_table = 'comment'
+
+    def str(self):
+        return self.content

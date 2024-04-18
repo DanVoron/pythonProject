@@ -28,5 +28,5 @@ urlpatterns = [
     path('',index_page,name="index"),
     path('coffee/',coffe_page,name="coffee"),
     path('post/<int:pk>/',post_list,name='post_list'),
-    path('/<int:pk>/',index_page_themed,name='index_page_themed'),
+    path('<int:pk>/',index_page_themed,name='index_page_themed'),
 ]
