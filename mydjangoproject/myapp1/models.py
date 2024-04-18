@@ -11,6 +11,7 @@ class Topic(models.Model):
     def str(self):
         return self.name
 
+
 class Role(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=15)
@@ -21,6 +22,7 @@ class Role(models.Model):
 
     def str(self):
         return self.name
+
 
 class User_Accaunt(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -36,6 +38,7 @@ class User_Accaunt(models.Model):
     def str(self):
         return self.username
 
+
 class Post(models.Model):
     id = models.IntegerField(primary_key=True)
     head = models.CharField(max_length=100)
@@ -50,6 +53,7 @@ class Post(models.Model):
 
     def str(self):
         return self.head
+
 
 class Comment(models.Model):
     id = models.IntegerField(primary_key=True)

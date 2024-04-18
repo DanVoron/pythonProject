@@ -59,10 +59,13 @@
         </div>
         <div class="NewsThemesContainer">
             <div class="RegLogContaienr" >
-                <label>Логин <br> <input type="text"  value="DanVoron"></label>
-                <label>Пароль <br><input type="password" value="12345" p></label>
-                <button class="AuthButt">Войти</button>
-                <button class="AuthButt" onclick="Goida2()">Регистрация</button>
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <label>Логин <br> <input type="text" name="username" placeholder="Username" value="DanVoron"></label>
+                    <label>Пароль <br><input type="password" name="password" placeholder="Password" value="12345"></label>
+                    <button class="AuthButt">Войти</button>
+                    <button class="AuthButt" onclick="Goida2()">Регистрация</button>
+                </form>
             </div>
             <div class="UserQuitContainer" >
                 <label>Большые шлепки</label>
