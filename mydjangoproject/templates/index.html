@@ -76,11 +76,10 @@
             {% endif %}
 
             {% if role_id is not None %}
-            <div class="UserQuitContainer" >
-                <label>Имя Пользователя</label>
-                    <form action="" method="post"></form>
+            <div class="UserQuitContainer">
+                <form action="{% url 'logout' %}" method="post">
                     {% csrf_token %}
-                    <button type="submit" class="AuthButt userquitButt">Выйти</button>
+                    <button class="AuthButt userquitButt" type="submit">Выйти</button>
                 </form>
             </div>
             {% endif %}
