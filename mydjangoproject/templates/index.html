@@ -60,13 +60,13 @@
         <div class="NewsThemesContainer">
             
 
-            {% if s == null %}
+            {% if role_id == null %}
             <div class="RegLogContaienr">
                 <form  method="post" action="">
                     {% csrf_token %}
                     <label>Логин <br> <input type="text" name="username" placeholder="Логин" ></label>
                     <label>Пароль <br><input type="password" name="password" placeholder="Пароль" ></label>
-                    <label>{{ urmom }}</label>
+                    <label>{{ role_id }}</label>
                     <button class="AuthButt"> Войти </button>
                     <button class="AuthButt" onclick="Goida2()">Регистрация</button>
                 </form>
@@ -74,7 +74,7 @@
             </div>
             {% endif %}
 
-            {% if urmom == 2 %}
+            {% if role_id == 2 %}
             <div class="UserQuitContainer" >
                 <label>fsaf</label>
                 <button class="AuthButt userquitButt">Выйти</button>

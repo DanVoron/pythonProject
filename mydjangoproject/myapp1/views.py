@@ -27,8 +27,6 @@ def index_page(request):
 
 def role(request):
     role_id = request.session.get('role_id', None)
-    if role_id is not None:
-        role_id = int(role_id)
     return {'role_id': role_id}
 
 
@@ -40,11 +38,10 @@ def coffe_page(request):
 
 
 def post_list(request, pk):
-    urmom = role(request)
-
+    role_id = request.session.get('role_id', None)
     post = get_object_or_404(Post, pk=pk)
     all_themes = Topic.objects.all()
-    return render(request, 'blog/post_list.html', {'post': post, 'topics': all_themes, 'urmom':urmom})
+    return render(request, 'blog/post_list.html', {'post': post, 'topics': all_themes, 'role_id': role_id})
 
 
 def index_page_themed(request, pk):
