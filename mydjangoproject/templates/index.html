@@ -43,7 +43,7 @@
             </div>
             {%for i in data%}
             <div class="Posts">
-                <img id="News" src="{% static 'img\BUCKET.jpg' %}" alt="NewsPhoto">
+                <a class="AMOGUS" href="{% url 'post_list' i.pk  %}"><img id="News" src="{% static 'img\BUCKET.jpg' %}" alt="NewsPhoto"></a>
                 <div class="NewsTextContaienr">
                     <div class="WhiteCubeGlav">
                         <a href="{% url 'post_list' i.pk %}">{{i.head}}</a> 
@@ -64,12 +64,12 @@
             <div class="RegLogContaienr">
                 <form  method="post" action="">
                     {% csrf_token %}
-                    <label>Логин <br> <input type="text" name="username" placeholder="Username" ></label>
-                    <label>Пароль <br><input type="password" name="password" placeholder="Password" ></label>
-                    <button class="AuthButt"> {{ urmom }} </button>
+                    <label>Логин <br> <input type="text" name="username" placeholder="Логин" ></label>
+                    <label>Пароль <br><input type="password" name="password" placeholder="Пароль" ></label>
+                    <label>{{ urmom }}</label>
+                    <button class="AuthButt"> Войти </button>
+                    <button class="AuthButt" onclick="Goida2()">Регистрация</button>
                 </form>
-
-                <button class="AuthButt" onclick="Goida2()">Регистрация</button>
                 
             </div>
             {% endif %}

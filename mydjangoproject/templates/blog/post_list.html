@@ -67,13 +67,7 @@
         </div>
     </div>
     <div class="NewsThemesContainer">
-        <div class="RegLogContaienr" >
-            <label>Логин <br> <input type="text"  value="DanVoron"></label>
-            <label>Пароль <br><input type="password" value="12345" p></label>
-            <button class="AuthButt">Войти</button>
-            <button class="AuthButt" onclick="Goida2()">Регистрация</button>
-            <hr>
-            </div>
+            {% if urmom == 2 %}
             <p>Выберите тему:</p>
             <div class="ThemesContainer">
                 <a class="archons" href="{% url 'coffee' %}" targer="_blank">Перейти на кофе</a>
@@ -83,6 +77,7 @@
                 <a class="archons" href="{% url 'index_page_themed' i.pk %}" > {{i.name}}</a>
                 {%endfor%}
             </div>
+            {% endif %}
         </div>
     </div>
     </main>
