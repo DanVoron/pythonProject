@@ -2,28 +2,34 @@ from django.shortcuts import redirect
 from django.shortcuts import render, get_object_or_404
 from myapp1.models import Post
 from myapp1.models import Topic, User_Accaunt
+from django.contrib.auth import logout
 
 
 def index_page(request):
     all_posts = Post.objects.all()
     all_themes = Topic.objects.all()
-
+    role__id = role(request)
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        try:
-            user = User_Accaunt.objects.get(login=username, password=password)
-            if user is not None:
-                print(user.role_id)
-                request.session['role_id'] = user.role_id
-                return render(request, 'index.html', context={'data': all_posts, 'topics': all_themes, 'urmom' : user.role_id })
-            else:
-                print("Somsyng BAD IDI NAHUI NOOB")
+        if role__id is None:
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            try:
+                user = User_Accaunt.objects.get(login=username, password=password)
+                if user is not None:
+                    print(user.role_id)
+                    request.session['role_id'] = user.role_id
+                    return render(request, 'index.html', context={'data': all_posts, 'topics': all_themes, 'urmom' : user.role_id })
+                else:
+                    return redirect('/')
+            except User_Accaunt.DoesNotExist:
                 return redirect('/')
-        except User_Accaunt.DoesNotExist:
-            return redirect('/')
+        else:
+            logout()
     else:
         return render(request, 'index.html', context={'data': all_posts, 'topics': all_themes})
+
+def logout(request):
+    logout(request)
 
 def role(request):
     role_id = request.session.get('role_id', None)

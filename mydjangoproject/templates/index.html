@@ -37,20 +37,24 @@
     </header>
     <main>
         <div class="NewsContainer">
+            {% if role_id == 2 %}
             <div class="AdminAddingButt">
                 <button id="AddPostButt">Добавить <br> новость</button>
                 <p >Добро пожаловать, Админ!</p>
             </div>
+            {% endif %}
             {%for i in data%}
             <div class="Posts">
                 <a class="AMOGUS" href="{% url 'post_list' i.pk  %}"><img id="News" src="{% static 'img\BUCKET.jpg' %}" alt="NewsPhoto"></a>
                 <div class="NewsTextContaienr">
                     <div class="WhiteCubeGlav">
                         <a href="{% url 'post_list' i.pk %}">{{i.head}}</a> 
+                        {% if role_id == 2 %}
                         <div class="PostAddButtsContainer">
                             <button class="PostButts"> <img class="PostButtsPhotos" src="{% static 'img/ediit.svg' %}" alt="edit"></button>
                             <button class="PostButts"> <img class="PostButtsPhotos" src="{% static 'img/traaash.svg' %}" alt="del"></button>
                         </div>
+                        {% endif %}
                     </div>
                     <div class="WhiteCubeOpis" ><p class="PostText" maxlength="5">{{i.content}}</p></div>
                 </div>
@@ -58,15 +62,12 @@
             {%endfor%}
         </div>
         <div class="NewsThemesContainer">
-            
-
-            {% if role_id == null %}
+            {% if role_id is None %}
             <div class="RegLogContaienr">
                 <form  method="post" action="">
                     {% csrf_token %}
                     <label>Логин <br> <input type="text" name="username" placeholder="Логин" ></label>
                     <label>Пароль <br><input type="password" name="password" placeholder="Пароль" ></label>
-                    <label>{{ role_id }}</label>
                     <button class="AuthButt"> Войти </button>
                     <button class="AuthButt" onclick="Goida2()">Регистрация</button>
                 </form>
@@ -74,10 +75,12 @@
             </div>
             {% endif %}
 
-            {% if role_id == 2 %}
+            {% if role_id is not None %}
             <div class="UserQuitContainer" >
-                <label>fsaf</label>
+                <label>Имя Пользователя</label>
+                <form action="" method="post"></form>
                 <button class="AuthButt userquitButt">Выйти</button>
+                </form>
             </div>
             {% endif %}
 

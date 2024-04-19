@@ -67,17 +67,33 @@
         </div>
     </div>
     <div class="NewsThemesContainer">
-            {% if role_id == 2 %}
-            <p>Выберите тему:</p>
-            <div class="ThemesContainer">
-                <a class="archons" href="{% url 'coffee' %}" targer="_blank">Перейти на кофе</a>
+        {% if role_id is None %}
+        <div class="RegLogContaienr">
+            <form  method="post" action="">
+                {% csrf_token %}
+                <label>Логин <br> <input type="text" name="username" placeholder="Логин" ></label>
+                <label>Пароль <br><input type="password" name="password" placeholder="Пароль" ></label>
+                <button class="AuthButt"> Войти </button>
+                <button class="AuthButt" onclick="Goida2()">Регистрация</button>
+            </form>
+            
+        </div>
+        {% endif %}
 
+        {% if role_id is not None %}
+        <div class="UserQuitContainer" >
+            <label>Имя Пользователя</label>
+            <button class="AuthButt userquitButt">Выйти</button>
+        </div>
+        {% endif %}
 
-                {%for i in topics%}
-                <a class="archons" href="{% url 'index_page_themed' i.pk %}" > {{i.name}}</a>
-                {%endfor%}
-            </div>
-            {% endif %}
+        <p><b>Выбрать тему:</b></p>
+        <div class="ThemesContainer">
+            <a class="archons" href="{% url 'coffee' %}" target="_blank">Перейти на кофе</a>
+
+            {%for i in topics%}
+            <a class="archons" href="{% url 'index_page_themed' i.pk %}" > {{i.name}}</a>
+            {%endfor%}
         </div>
     </div>
     </main>

@@ -144,7 +144,6 @@ footer{
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    display: none;
 }
 
 .ThemesContainer{
@@ -312,7 +311,6 @@ main{
     align-items: center;
     align-self:center;
     justify-self: end;
-    display: none;
 }
 .PostButts{
     
@@ -338,7 +336,6 @@ main{
     font-size: 40px;
     font-weight: 500;
     font-family: "Zen Antique";
-    display: none;
 }
 #AddPostButt{
     font-size: 18px;
