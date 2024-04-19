@@ -78,8 +78,9 @@
             {% if role_id is not None %}
             <div class="UserQuitContainer" >
                 <label>Имя Пользователя</label>
-                <form action="" method="post"></form>
-                <button class="AuthButt userquitButt">Выйти</button>
+                    <form action="" method="post"></form>
+                    {% csrf_token %}
+                    <button type="submit" class="AuthButt userquitButt">Выйти</button>
                 </form>
             </div>
             {% endif %}

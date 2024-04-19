@@ -24,12 +24,13 @@ def index_page(request):
             except User_Accaunt.DoesNotExist:
                 return redirect('/')
         else:
-            logout()
+            logout_gg(request)
     else:
         return render(request, 'index.html', context={'data': all_posts, 'topics': all_themes})
 
-def logout(request):
+def logout_gg(request):
     logout(request)
+    return
 
 def role(request):
     role_id = request.session.get('role_id', None)
