@@ -3,14 +3,16 @@ from django.shortcuts import render, get_object_or_404
 from myapp1.models import Post
 from myapp1.models import Topic, User_Accaunt
 from django.contrib.auth import logout
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 
 def index_page(request):
     all_posts = Post.objects.all()
     all_themes = Topic.objects.all()
-    role__id = role(request)
+    role_id = request.session.get('role_id', None)
     if request.method == 'POST':
-        if role__id is None:
+        if role_id is None:
             username = request.POST.get('username')
             password = request.POST.get('password')
             try:
@@ -24,12 +26,18 @@ def index_page(request):
             except User_Accaunt.DoesNotExist:
                 return redirect('/')
         else:
-            logout()
+            return logout_wiev(request)
     else:
         return render(request, 'index.html', context={'data': all_posts, 'topics': all_themes})
 
-def logout(request):
-    logout(request)
+def logout_wiev(request):
+    if request.method == 'POST':
+        logout(request)
+        # После выхода из системы перенаправляем пользователя на главную страницу
+        return HttpResponseRedirect(reverse('index'))
+    else:
+        # Если запрос не является POST, перенаправляем пользователя на главную страницу
+        return HttpResponseRedirect(reverse('index'))
 
 def role(request):
     role_id = request.session.get('role_id', None)
@@ -38,7 +46,7 @@ def role(request):
 
 def coffe_page(request):
     all_posts = Post.objects.all()
-    all_themes = Topic.objects.all()
+    Topic.objects.all()
 
     return render(request, 'Coffee.html', context={'data': all_posts})
 
