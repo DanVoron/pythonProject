@@ -21,6 +21,7 @@ from myapp1.views import coffe_page
 from myapp1.views import post_list
 from myapp1.views import index_page_themed
 from myapp1.views import logout_wiev
+from myapp1.views import post_edit
 app_name='myapp1'
 
 urlpatterns = [
@@ -30,4 +31,5 @@ urlpatterns = [
     path('post/<int:pk>/',post_list,name='post_list'),
     path('<int:pk>/',index_page_themed,name='index_page_themed'),
     path('logout/', logout_wiev, name='logout'),
+    path('addpost/<int:pk>',post_edit,name='addpost')
 ]

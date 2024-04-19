@@ -91,7 +91,9 @@ h2{
     background-color: #cccccc;
 }
 .OstavComm{
+    border-radius: 10px;
     margin-top: 5px;
+    margin-left: 10px;
     height: 100px;
     width: 12%;
     align-self:flex-end;
@@ -100,4 +102,8 @@ h2{
 .NewCommentsContainer{
     display: flex;
     flex-direction: column;
+}
+.buttContainers{
+    display: flex;
+    justify-content: flex-end;
 }

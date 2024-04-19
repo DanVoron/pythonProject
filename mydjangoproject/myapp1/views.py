@@ -30,6 +30,15 @@ def index_page(request):
     else:
         return render(request, 'index.html', context={'data': all_posts, 'topics': all_themes})
 
+
+
+def post_edit(request, pk):
+    role_id = request.session.get('role_id', None)
+    post = get_object_or_404(Post, pk=pk)
+    all_themes = Topic.objects.all()
+    return render(request, 'blog/post_edit.html', {'post': post, 'topics': all_themes, 'role_id': role_id})
+
+
 def logout_wiev(request):
     if request.method == 'POST':
         logout(request)
@@ -46,7 +55,6 @@ def role(request):
 
 def coffe_page(request):
     all_posts = Post.objects.all()
-    Topic.objects.all()
 
     return render(request, 'Coffee.html', context={'data': all_posts})
 

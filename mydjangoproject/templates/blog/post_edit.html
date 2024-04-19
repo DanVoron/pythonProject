@@ -40,30 +40,18 @@
             <button class="BackButt" onclick="document.location='{% url 'index' %}'">&lt;&lt;&lt;</button>
              <h2>{{ post.head }}</h2>
         </div>
-        <div class="PostTextContainer">
-            <p>      {{ post.content }}</p>
-        </div>
         <div class="NewCommentsContainer">
             <textarea  class="comment" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto eius maxime sed, dignissimos dicta quod, asperiores excepturi perspiciatis autem ratione alias hic earum voluptates ipsam minus ad cum quam natus.</textarea>
-            <button class="OstavComm">Добавить комментарий</button>
-        </div>
-        <div class="CommContainer">
-            <div class="UserContainer">
-                <label class="UserLabel" >Пользователь <br></label>
+            <div class="buttContainers">
+                <select name="pets" id="themes-select">
+                    <option value="">Без темы</option>
+                    {%for i in topics%}
+                    <option class="archons"> {{i.name}}</option>
+                    {%endfor%}
+                  </select>
+                <button class="OstavComm">Изменить пост</button>
+                <button class="OstavComm">Удалить пост</button>
             </div>
-            <label class="CommLabel">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, nam eum eligendi impedit numquam quod modi repellat commodi. Iste ea provident aperiam tenetur magnam officiis, quo fugiat ullam illo delectus assumenda repellendus omnis dolorum voluptates earum neque est saepe. Minus?</label>
-        </div>
-        <div class="CommContainer">
-            <div class="UserContainer">
-                <label class="UserLabel" >Пользователь <br></label>
-            </div>
-            <label class="CommLabel">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, nam eum eligendi impedit numquam quod modi repellat commodi. Iste ea provident aperiam tenetur magnam officiis, quo fugiat ullam illo delectus assumenda repellendus omnis dolorum voluptates earum neque est saepe. Minus?</label>
-        </div>
-        <div class="CommContainer">
-            <div class="UserContainer">
-                <label class="UserLabel" >Пользователь <br></label>
-            </div>
-            <label class="CommLabel">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, nam eum eligendi impedit numquam quod modi repellat commodi. Iste ea provident aperiam tenetur magnam officiis, quo fugiat ullam illo delectus assumenda repellendus omnis dolorum voluptates earum neque est saepe. Minus?</label>
         </div>
     </div>
     <div class="NewsThemesContainer">
