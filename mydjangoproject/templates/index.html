@@ -14,15 +14,13 @@
             <div class="regContainer">
                 <button id="extBUTT" class="ExitButt" onclick="Goida()">X</button>
                 <form  method="post" action="" class="formstyle">
-                {% csrf_token %}
+                {% csrf_token }
                 <label class="regMenuRowLabel">Имя</label>
-                <input class="NewUserInput" value="">
+                <input type="text" name="Username" placeholder="Введите имя">
                 <label class="regMenuRowLabel" >Логин</label>
-                <input class="NewUserInput" value="">
+                <input type="text" name="Login" placeholder="Никнейм" >
                 <label class="regMenuRowLabel">Пароль</label>
-                <input class="NewUserInput" type="password" value="">
-                <label class="regMenuRowLabel">Пароль ещё раз</label>
-                <input class="NewUserInput" type="password" value="">
+                <input type="text" name="Password" placeholder="Пароль" >
                 <button id="RegButt" name="action" value="Reg">ПОДТВЕРДИТЬ</button>
                 </form>
             </div>

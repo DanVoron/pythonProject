@@ -10,12 +10,17 @@ from datetime import datetime
 def index_page(request):
     all_posts = Post.objects.all()
     all_themes = Topic.objects.all()
-
     role_id = request.session.get('role_id', None)
     if request.method == 'POST':
         action = request.POST.get('action')
-        # if action == 'Reg':
-        if action == 'Login':
+        if action == 'Reg':
+            name = request.POST.get('Username')
+            login = request.POST.get('Login')
+            password = request.POST.get('Password')
+            new_user = User_Accaunt(username=name, login=login, password=password, role_id=1)
+            new_user.save()
+            return render(request, 'index.html', context={'data': all_posts, 'topics': all_themes})
+        elif action == 'Login':
             if role_id is None:
                 username = request.POST.get('username')
                 password = request.POST.get('password')
