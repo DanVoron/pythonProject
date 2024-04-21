@@ -43,27 +43,22 @@
         <div class="PostTextContainer">
             <p>      {{ post.content }}</p>
         </div>
-        <div class="NewCommentsContainer">
-            <textarea  class="comment" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto eius maxime sed, dignissimos dicta quod, asperiores excepturi perspiciatis autem ratione alias hic earum voluptates ipsam minus ad cum quam natus.</textarea>
-            <button class="OstavComm">Добавить комментарий</button>
-        </div>
-        <div class="CommContainer">
-            <div class="UserContainer">
-                <label class="UserLabel" >Пользователь <br></label>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Добавить комментарий</button>
+        </form>
+        <div class="CommentsList">
+            {% for comment in comments %}
+            <div class="CommentItem">
+                <div class="UserContainer">
+                    <label class="UserLabel">{{ comment.user.username }}</label> <!-- Изменено здесь -->
+                </div>
+                <label class="CommLabel">{{ comment.content }}</label>
             </div>
-            <label class="CommLabel">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, nam eum eligendi impedit numquam quod modi repellat commodi. Iste ea provident aperiam tenetur magnam officiis, quo fugiat ullam illo delectus assumenda repellendus omnis dolorum voluptates earum neque est saepe. Minus?</label>
-        </div>
-        <div class="CommContainer">
-            <div class="UserContainer">
-                <label class="UserLabel" >Пользователь <br></label>
-            </div>
-            <label class="CommLabel">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, nam eum eligendi impedit numquam quod modi repellat commodi. Iste ea provident aperiam tenetur magnam officiis, quo fugiat ullam illo delectus assumenda repellendus omnis dolorum voluptates earum neque est saepe. Minus?</label>
-        </div>
-        <div class="CommContainer">
-            <div class="UserContainer">
-                <label class="UserLabel" >Пользователь <br></label>
-            </div>
-            <label class="CommLabel">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, nam eum eligendi impedit numquam quod modi repellat commodi. Iste ea provident aperiam tenetur magnam officiis, quo fugiat ullam illo delectus assumenda repellendus omnis dolorum voluptates earum neque est saepe. Minus?</label>
+            {% empty %}
+            <p>Комментариев к этому посту еще нет.</p>
+            {% endfor %}
         </div>
     </div>
     <div class="NewsThemesContainer">
@@ -76,7 +71,7 @@
                 <button class="AuthButt"> Войти </button>
                 <button class="AuthButt" onclick="Goida2()">Регистрация</button>
             </form>
-            
+
         </div>
         {% endif %}
 
