@@ -51,8 +51,19 @@ def edit_post(request, pk):
     username = request.session.get('username', None)
     post = get_object_or_404(Post, pk=pk)
     all_themes = Topic.objects.all()
+    all_posts = Post.objects.all()
     username = request.session.get('username', None)
-
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        if action == 'Edit':
+            now = datetime.now()
+            dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
+            head = request.POST.get('PostHead')
+            content = request.POST.get('PostBudy')
+            topik = request.POST.get('pets')
+            topic = get_object_or_404(Topic, id=topik)
+            Post.objects.filter(id=post.id).update(head=head, content=content, publish_datetime=dt_string, topic=topic, image = "Imaginating ebalo")
+            return render(request, 'index.html', context={'data': all_posts, 'topics': all_themes})
     return render(request, 'blog/post_edit.html', {'username': username,'post_id': post.id, 'topics': all_themes, 'post_head': post.head, 'post_content' : post.content, 'post_topic' : post.topic.name})
 
 
