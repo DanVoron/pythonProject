@@ -84,7 +84,7 @@
             <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
                 {% if username %}
-                <p>Добро пожаловать, {{ username }}!</p>
+                <p>Добро пожаловать, <br> {{ username }}!</p>
                 {% endif %}
                 <button class="AuthButt userquitButt" type="submit">Выйти</button>
             </form>

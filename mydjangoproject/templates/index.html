@@ -13,6 +13,8 @@
         <div class="regMenu">
             <div class="regContainer">
                 <button id="extBUTT" class="ExitButt" onclick="Goida()">X</button>
+                <form  method="post" action="" class="formstyle">
+                {% csrf_token %}
                 <label class="regMenuRowLabel">Имя</label>
                 <input class="NewUserInput" value="">
                 <label class="regMenuRowLabel" >Логин</label>
@@ -21,7 +23,8 @@
                 <input class="NewUserInput" type="password" value="">
                 <label class="regMenuRowLabel">Пароль ещё раз</label>
                 <input class="NewUserInput" type="password" value="">
-                <button id="RegButt">ПОДТВЕРДИТЬ</button>
+                <button id="RegButt" name="action" value="Reg">ПОДТВЕРДИТЬ</button>
+                </form>
             </div>
         </div>
     </div>
@@ -73,7 +76,7 @@
                     </div>
                 </form>
                 <div class="centerbutts">
-                    <button class="AuthButt" onclick="Goida2()" name="action" value="Reg">Регистрация</button>
+                    <button class="AuthButt" onclick="Goida2()" >Регистрация</button>
                 </div>
             </div>
             {% endif %}
@@ -82,7 +85,7 @@
             <div class="UserQuitContainer">
                 <form action="{% url 'logout' %}" method="post">
                     {% csrf_token %}
-                    <p>Здраствуйте,<br> {{ username }}</p>
+                    <p>Добро пожаловать,<br> {{ username }}</p>
                     <button class="AuthButt userquitButt" type="submit">Выйти</button>
                 </form>
             </div>

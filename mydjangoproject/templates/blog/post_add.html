@@ -54,37 +54,44 @@
                 </div>
             </div>
         </div>
-    <div class="NewsThemesContainer">
-        {% if role_id is None %}
-        <div class="RegLogContaienr">
-            <form  method="post" action="">
-                {% csrf_token %}
-                <label>Логин <br> <input type="text" name="username" placeholder="Логин" ></label>
-                <label>Пароль <br><input type="password" name="password" placeholder="Пароль" ></label>
-                <button class="AuthButt"> Войти </button>
-                <button class="AuthButt" onclick="Goida2()">Регистрация</button>
-            </form>
+        <div class="NewsThemesContainer">
+            {% if role_id is None %}
+            <div class="RegLogContaienr">
+                <form  method="post" action="" class="formstyle">
+                    {% csrf_token %}
+                    <label>Логин <br> <input type="text" name="username" placeholder="Логин" ></label>
+                    <label>Пароль <br><input type="password" name="password" placeholder="Пароль" ></label>
+                    <div class="testing">
+                        <button class="AuthButt"> Войти </button> 
+                    </div>
+                </form>
+                <div class="centerbutts">
+                    <button class="AuthButt" onclick="Goida2()">Регистрация</button>
+                </div>
+            </div>
+            {% endif %}
+    
+            {% if role_id is not None %}
+            <div class="UserQuitContainer">
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    {% if username %}
+                    <p>Добро пожаловать,<br>{{ username }}!</p>
+                    {% endif %}
+                    <button class="AuthButt userquitButt" type="submit">Выйти</button>
+                </form>
+            </div>
+            {% endif %}
+    
+            <p><b>Выбрать тему:</b></p>
+            <div class="ThemesContainer">
+                <a class="archons" href="{% url 'coffee' %}" target="_blank">Перейти на кофе</a>
+    
+                {%for i in topics%}
+                <a class="archons" href="{% url 'index_page_themed' i.pk %}" > {{i.name}}</a>
+                {%endfor%}
+            </div>
         </div>
-        {% endif %}
-
-        {% if role_id is not None %}
-        <div class="UserQuitContainer">
-            <form action="{% url 'logout' %}" method="post">
-                {% csrf_token %}
-                <button class="AuthButt userquitButt" type="submit">Выйти</button>
-            </form>
-        </div>
-        {% endif %}
-
-        <p><b>Выбрать тему:</b></p>
-        <div class="ThemesContainer">
-            <a class="archons" href="{% url 'coffee' %}" target="_blank">Перейти на кофе</a>
-
-            {%for i in topics%}
-            <a class="archons" href="{% url 'index_page_themed' i.pk %}" > {{i.name}}</a>
-            {%endfor%}
-        </div>
-    </div>
     </main>
     <footer>
         <p class="footertext">Copyright © 2024 Forps</p>

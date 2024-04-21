@@ -14,6 +14,8 @@ def index_page(request):
     role_id = request.session.get('role_id', None)
     if request.method == 'POST':
         action = request.POST.get('action')
+        # if action == 'Reg':
+
         if action == 'Login':
             if role_id is None:
                 username = request.POST.get('username')
