@@ -45,11 +45,9 @@
             <textarea  class="comment" >{{ post_content }}</textarea>
             <div class="buttContainers">
                 <select name="pets" id="themes-select">
-                    <option value="">{{ post_topic }}</option>
-                    <option value="" disabled selected>Выберите тему</option>
                     {%for i in topics%}
                     <option class="archons"> {{i.name}}</option>
-                    {%endfor%}
+                    {%endfor%}  
                   </select>
                 <button class="OstavComm">Изменить пост</button>
             </div>

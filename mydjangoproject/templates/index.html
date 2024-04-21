@@ -42,12 +42,13 @@
                 <p >Добро пожаловать, Админ!</p>
             </div>
             {% endif %}
+           <div class="postss">
             {% for i in data %}
             <div class="Posts">
                 <a class="AMOGUS" href="{% url 'post_list' i.pk %}"><img id="News" src="{% static 'img\BUCKET.jpg' %}" alt="NewsPhoto"></a>
                 <div class="NewsTextContaienr">
                     <div class="WhiteCubeGlav">
-                        <a href="{% url 'post_list' i.pk %}">{{i.head}}</a>
+                        <a class="PostName" href="{% url 'post_list' i.pk %}">{{i.head}}</a>
                         <div class="PostAddButtsContainer">
                             {% if role_id == 2 %}
                             <button class="PostButts" onclick="location.href='{% url 'post_edit' i.pk %}'"> <img class="PostButtsPhotos" src="{% static 'img/ediit.svg' %}" alt="edit"></button>
@@ -61,6 +62,7 @@
                 </div>
             </div>
             {% endfor %}
+           </div>
         </div>
         <div class="NewsThemesContainer">
             {% if role_id is None %}

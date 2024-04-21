@@ -25,9 +25,10 @@ p{
     overflow: hidden;
     white-space:pre-line;
     text-overflow: ellipsis;
+    margin: 5px;
 }
 .PostText{
-    height: 80%;
+    height: 82%;
     text-indent: 10px;
 }
 .overflow-ellipsis {
@@ -200,6 +201,15 @@ main{
     width: 25%;
     height: 100%;
 }
+.PostName{
+    margin-left: 20px;
+    max-width: 900px;
+    max-height: 50px;
+    text-overflow: ellipsis;
+    text-overflow: none;
+    white-space: nowrap;
+    overflow:hidden;
+}
 .NewsContainer{
     background-color: #ffffff;
     width: 95%;
@@ -208,7 +218,8 @@ main{
 }
 
 .archons{
-    margin-bottom: 3%;
+    margin-top: 3%;
+    margin-left: 5px;
 }
 
 .NewsThemesContainer{
@@ -264,6 +275,10 @@ main{
     background-color: rgba(0,0,0,0.5);
     align-items: center;
     justify-content: center;
+}
+.postss{
+    display: flex;
+    flex-direction: column-reverse;
 }
 .regMenu{
     display: flex;
