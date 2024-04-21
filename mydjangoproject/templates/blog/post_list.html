@@ -44,11 +44,18 @@
         <div class="PostTextContainer">
             <p>{{ post.content }}</p>
         </div>
-        <form method="post">
+        {% if role_id is not None %}
+        <form method="post" class="formidk">
             {% csrf_token %}
-            {{ form.as_p }}
+            <label>Оставить комментарий</label>
+            <textarea class="commentari" placeholder="Комментарий"></textarea>
             <button type="submit" class="AddCommButt">Добавить комментарий</button>
         </form>
+        {%endif%}
+
+        {% if role_id is None %}
+        <p>Чтоб оставлять комментарий войдите в аккаунт</p>
+        {%endif%}
         <div class="CommentsList">
             {% for comment in comments %}
             <div class="CommentItem">
