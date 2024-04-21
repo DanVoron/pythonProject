@@ -65,6 +65,7 @@ TEMPLATES = [
                 'django.contrib.mess'
                 'ages.context_processors.messages',
                 'myapp1.views.role',
+                'myapp1.views.Nickname',
             ],
         },
     },

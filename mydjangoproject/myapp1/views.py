@@ -12,7 +12,6 @@ def index_page(request):
     all_themes = Topic.objects.all()
 
     role_id = request.session.get('role_id', None)
-    username = request.session.get('username', None)
     if request.method == 'POST':
         action = request.POST.get('action')
         if action == 'Login':
@@ -38,12 +37,14 @@ def index_page(request):
 
 
 def delete_post(request, pk):
+    username = request.session.get('username', None)
     post = get_object_or_404(Post, pk=pk)
     post.delete()
-    return redirect(reverse('index'))
+    return redirect(reverse('index',{'username': username}))
 
 
 def edit_post(request, pk):
+    username = request.session.get('username', None)
     post = get_object_or_404(Post, pk=pk)
     all_themes = Topic.objects.all()
     username = request.session.get('username', None)
@@ -69,6 +70,9 @@ def role(request):
     role_id = request.session.get('role_id', None)
     return {'role_id': role_id}
 
+def Nickname(request):
+    nickname = request.session.get('username',None)
+    return {'username': nickname}
 
 def coffe_page(request):
     all_posts = Post.objects.all()
@@ -79,6 +83,7 @@ def post_list(request, pk):
     all_themes = Topic.objects.all()
     post = get_object_or_404(Post, pk=pk)
     comments = Comment.objects.filter(post_id=pk)
+    username = request.session.get('username', None)
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -97,7 +102,7 @@ def post_list(request, pk):
             return redirect('post_list', pk=post.pk)
     else:
         form = CommentForm()
-    return render(request, 'blog/post_list.html', {'post': post, 'comments': comments, 'form': form,'topics':all_themes})
+    return render(request, 'blog/post_list.html', {'post': post, 'comments': comments, 'form': form,'topics':all_themes, 'username': username})
 
 
 def index_page_themed(request, pk):
