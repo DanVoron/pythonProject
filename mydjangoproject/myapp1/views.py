@@ -11,7 +11,6 @@ def index_page(request):
     all_posts = Post.objects.all()
     all_themes = Topic.objects.all()
     role_id = request.session.get('role_id', None)
-    username = request.session.get('username', None)
     if request.method == 'POST':
         if role_id is None:
             username = request.POST.get('username')
@@ -23,7 +22,7 @@ def index_page(request):
                     print(username)
                     request.session['role_id'] = user.role_id
                     request.session['username'] = user.username
-                    return render(request, 'index.html',context={'data': all_posts, 'topics': all_themes, 'role_id': user.role_id, 'username': user.username})
+                    return render(request, 'index.html',context={'data': all_posts, 'topics': all_themes, 'role_id': user.role_id, 'username': username})
                 else:
                     return redirect('/')
             except User_Accaunt.DoesNotExist:
@@ -42,15 +41,17 @@ def post_edit(request, pk):
 
 
 def delete_post(request, pk):
+    username = request.session.get('username', None)
     post = get_object_or_404(Post, pk=pk)
     post.delete()
-    return redirect(reverse('index'))
+    return redirect(reverse('index',{'username': username}))
 
 
 def edit_post(request, pk):
+    username = request.session.get('username', None)
     post = get_object_or_404(Post, pk=pk)
     print(post.id)
-    return render(request, 'blog/post_edit.html', {'post_id': post.id, 'post_head': post.head, 'post_content' : post.content, 'post_topic' : post.topic.name})
+    return render(request, 'blog/post_edit.html', {'post_id': post.id, 'post_head': post.head, 'post_content' : post.content, 'post_topic' : post.topic.name,'username': username})
 
 
 def logout_wiev(request):
@@ -67,6 +68,9 @@ def role(request):
     role_id = request.session.get('role_id', None)
     return {'role_id': role_id}
 
+def Nickname(request):
+    nickname = request.session.get('username',None)
+    return {'username': nickname}
 
 def coffe_page(request):
     all_posts = Post.objects.all()
@@ -77,6 +81,7 @@ def post_list(request, pk):
     all_themes = Topic.objects.all()
     post = get_object_or_404(Post, pk=pk)
     comments = Comment.objects.filter(post_id=pk)
+    username = request.session.get('username', None)
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -95,7 +100,7 @@ def post_list(request, pk):
             return redirect('post_list', pk=post.pk)
     else:
         form = CommentForm()
-    return render(request, 'blog/post_list.html', {'post': post, 'comments': comments, 'form': form,'topics':all_themes})
+    return render(request, 'blog/post_list.html', {'post': post, 'comments': comments, 'form': form,'topics':all_themes, 'username': username})
 
 
 def index_page_themed(request, pk):
