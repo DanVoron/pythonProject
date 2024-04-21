@@ -29,8 +29,7 @@ def index_page(request):
                         request.session['role_id'] = user.role_id
                         request.session['username'] = user.username
                         return render(request, 'index.html',
-                                      context={'data': all_posts, 'topics': all_themes, 'role_id': user.role_id,
-                                               'username': user.username})
+                                      context={'data': all_posts, 'topics': all_themes, 'role_id': user.role_id,'username': user.username})
                     else:
                         return redirect('/')
                 except User_Accaunt.DoesNotExist:

@@ -82,6 +82,7 @@ h2{
     background-color: #dddddd;
     color: #6e6e6e;
     border-radius: 50px;
+    margin-right: 10px;
 }
 .BackButt:hover{
     cursor: pointer;
@@ -125,4 +126,9 @@ h2{
     resize: none;
     text-indent: 20px;
     font-size: 20px;
+}
+.CommentItem{
+    margin-bottom: 15px;
+    background-color: #F1F1F1;
+    border-radius: 20px 20px 20px 0;
 }
