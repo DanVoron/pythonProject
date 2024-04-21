@@ -31,5 +31,5 @@ urlpatterns = [
     path('post/<int:pk>/',post_list,name='post_list'),
     path('<int:pk>/',index_page_themed,name='index_page_themed'),
     path('logout/', logout_wiev, name='logout'),
-    path('addpost/<int:pk>',post_edit,name='addpost')
+    path('postedit/<int:pk>',post_edit,name='addpost')
 ]

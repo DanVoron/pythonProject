@@ -61,6 +61,7 @@ def coffe_page(request):
     return render(request, 'Coffee.html', context={'data': all_posts})
 
 def post_list(request, pk):
+    all_themes = Topic.objects.all()
     post = get_object_or_404(Post, pk=pk)
     comments = Comment.objects.filter(post_id=pk)
     if request.method == 'POST':
@@ -81,7 +82,7 @@ def post_list(request, pk):
             return redirect('post_list', pk=post.pk)
     else:
         form = CommentForm()
-    return render(request, 'blog/post_list.html', {'post': post, 'comments': comments, 'form': form})
+    return render(request, 'blog/post_list.html', {'post': post, 'comments': comments, 'form': form,'topics':all_themes})
 
 
 def index_page_themed(request, pk):

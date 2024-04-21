@@ -41,18 +41,18 @@
              <h2>{{ post.head }}</h2>
         </div>
         <div class="PostTextContainer">
-            <p>      {{ post.content }}</p>
+            <p>{{ post.content }}</p>
         </div>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Добавить комментарий</button>
+            <button type="submit" class="AddCommButt">Добавить комментарий</button>
         </form>
         <div class="CommentsList">
             {% for comment in comments %}
             <div class="CommentItem">
                 <div class="UserContainer">
-                    <label class="UserLabel">{{ comment.user.username }}</label> <!-- Изменено здесь -->
+                    <label class="UserLabel">{{ comment.user.username }}</label>
                 </div>
                 <label class="CommLabel">{{ comment.content }}</label>
             </div>
@@ -64,14 +64,17 @@
     <div class="NewsThemesContainer">
         {% if role_id is None %}
         <div class="RegLogContaienr">
-            <form  method="post" action="">
+            <form  method="post" action="" class="formstyle">
                 {% csrf_token %}
                 <label>Логин <br> <input type="text" name="username" placeholder="Логин" ></label>
                 <label>Пароль <br><input type="password" name="password" placeholder="Пароль" ></label>
-                <button class="AuthButt"> Войти </button>
-                <button class="AuthButt" onclick="Goida2()">Регистрация</button>
+                <div class="testing">
+                    <button class="AuthButt"> Войти </button> 
+                </div>
             </form>
-
+            <div class="centerbutts">
+                <button class="AuthButt" onclick="Goida2()">Регистрация</button>
+            </div>
         </div>
         {% endif %}
 
@@ -79,6 +82,7 @@
         <div class="UserQuitContainer">
             <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
+                <p>Здраствуйте,<br> {{ username }}</p>
                 <button class="AuthButt userquitButt" type="submit">Выйти</button>
             </form>
         </div>
