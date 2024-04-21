@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="{% static 'img\Group 7.png' %}">
+    <link rel="icon" href="{% static 'img\logoforsite.svg' %}">
     <link rel="stylesheet" href="{% static 'css/index.css'%}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Classic Forps</title>
@@ -39,7 +39,7 @@
         <div class="NewsContainer">
             {% if role_id == 2 %}
             <div class="AdminAddingButt">
-                <button id="AddPostButt">Добавить <br> новость</button>
+                <button id="AddPostButt" onclick="location.href='{% url 'post_add' %}'">Добавить <br> новость</button>
                 <p >Добро пожаловать, Админ!</p>
             </div>
             {% endif %}
@@ -69,11 +69,11 @@
                     <label>Логин <br> <input type="text" name="username" placeholder="Логин" ></label>
                     <label>Пароль <br><input type="password" name="password" placeholder="Пароль" ></label>
                     <div class="testing">
-                        <button class="AuthButt"> Войти </button> 
+                        <button class="AuthButt" name="action" value="Login"> Войти </button> 
                     </div>
                 </form>
                 <div class="centerbutts">
-                    <button class="AuthButt" onclick="Goida2()">Регистрация</button>
+                    <button class="AuthButt" onclick="Goida2()" name="action" value="Reg">Регистрация</button>
                 </div>
             </div>
             {% endif %}

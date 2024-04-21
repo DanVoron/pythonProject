@@ -3,9 +3,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="{% static 'img\logoforsite.svg' %}">
     <link rel="stylesheet" href="{% static 'css/index.css'%}">
     <link rel="stylesheet" href="{% static 'css/PostListStyles.css'%}">
-    <title>Пост "{{ post.head}}"</title>
+    <title>Пост "{{post_head}}"</title>
 </head>
 <body>
     <div class="regPage">
@@ -29,7 +30,7 @@
         <div class="HeaderTextContainer">
             <div class="HeaderTextHolder">
                 <label class="HeaderText">FORPS</label>
-                <label class="NormalText">ДЕНЬГИ ТАЧКИ ТЕЛКИ</label>
+                <label class="NormalText">ДЕНЬГИ– ХОРОШИЙ СЛУГА, НО ПЛОХОЙ ХОЗЯИН.</label>
             </div>
 
         </div>
@@ -38,19 +39,20 @@
     <div class="PostContainer">
         <div class="HeaderContainer">
             <button class="BackButt" onclick="document.location='{% url 'index' %}'">&lt;&lt;&lt;</button>
-             <h2>{{ post_head }}</h2>
+             <input type="text" value="{{ post_head }}" class="PostHeader">
         </div>
         <div class="NewCommentsContainer">
             <textarea  class="comment" >{{ post_content }}</textarea>
             <div class="buttContainers">
                 <select name="pets" id="themes-select">
                     <option value="">{{ post_topic }}</option>
+                    <option value="" disabled selected>Выберите тему</option>
                     {%for i in topics%}
                     <option class="archons"> {{i.name}}</option>
                     {%endfor%}
                   </select>
-                <button class="OstavComm">Изменить пост</button>
                 <button class="OstavComm">Удалить пост</button>
+                <button class="OstavComm">Изменить пост</button>
             </div>
         </div>
     </div>

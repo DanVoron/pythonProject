@@ -6,7 +6,7 @@
     <link rel="icon" href="{% static 'img\logoforsite.svg' %}">
     <link rel="stylesheet" href="{% static 'css/index.css'%}">
     <link rel="stylesheet" href="{% static 'css/PostListStyles.css'%}">
-    <title>Пост "{{ post.head}}"</title>
+    <title>Новый пост</title>
 </head>
 <body>
     <div class="regPage">
@@ -36,46 +36,34 @@
         </div>
     </header>
     <main>
-    <div class="PostContainer">
-        <div class="HeaderContainer">
-            <button class="BackButt" onclick="document.location='{% url 'index' %}'">&lt;&lt;&lt;</button>
-             <h2>{{ post.head }}</h2>
-        </div>
-        <div class="PostTextContainer">
-            <p>{{ post.content }}</p>
-        </div>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="AddCommButt">Добавить комментарий</button>
-        </form>
-        <div class="CommentsList">
-            {% for comment in comments %}
-            <div class="CommentItem">
-                <div class="UserContainer">
-                    <label class="UserLabel">{{ comment.user.username }}</label>
-                </div>
-                <label class="CommLabel">{{ comment.content }}</label>
+        <div class="PostContainer">
+            <div class="HeaderContainer">
+                <button class="BackButt" onclick="document.location='{% url 'index' %}'">&lt;&lt;&lt;</button>
+                 <input type="text" placeholder="Название поста" class="PostHeader">
             </div>
-            {% empty %}
-            <p>Комментариев к этому посту еще нет.</p>
-            {% endfor %}
+            <div class="NewCommentsContainer">
+                <textarea placeholder="Текст поста"  class="comment" ></textarea>
+                <div class="buttContainers">
+                    <select name="pets" id="themes-select">
+                        <option value="" disabled selected>Выберите тему</option>
+                        {%for i in topics%}
+                        <option class="archons"> {{i.name}}</option>
+                        {%endfor%}
+                      </select>
+                    <button class="OstavComm">Добавить пост</button>
+                </div>
+            </div>
         </div>
-    </div>
     <div class="NewsThemesContainer">
         {% if role_id is None %}
         <div class="RegLogContaienr">
-            <form  method="post" action="" class="formstyle">
+            <form  method="post" action="">
                 {% csrf_token %}
                 <label>Логин <br> <input type="text" name="username" placeholder="Логин" ></label>
                 <label>Пароль <br><input type="password" name="password" placeholder="Пароль" ></label>
-                <div class="testing">
-                    <button class="AuthButt"> Войти </button> 
-                </div>
-            </form>
-            <div class="centerbutts">
+                <button class="AuthButt"> Войти </button>
                 <button class="AuthButt" onclick="Goida2()">Регистрация</button>
-            </div>
+            </form>
         </div>
         {% endif %}
 
@@ -83,7 +71,6 @@
         <div class="UserQuitContainer">
             <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
-                <p>Здраствуйте,<br> {{ username }}</p>
                 <button class="AuthButt userquitButt" type="submit">Выйти</button>
             </form>
         </div>

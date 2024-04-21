@@ -10,35 +10,31 @@ from datetime import datetime
 def index_page(request):
     all_posts = Post.objects.all()
     all_themes = Topic.objects.all()
+
     role_id = request.session.get('role_id', None)
     username = request.session.get('username', None)
     if request.method == 'POST':
-        if role_id is None:
-            username = request.POST.get('username')
-            password = request.POST.get('password')
-            try:
-                user = User_Accaunt.objects.get(login=username, password=password)
-                if user is not None:
-                    print(user.role_id)
-                    print(username)
-                    request.session['role_id'] = user.role_id
-                    request.session['username'] = user.username
-                    return render(request, 'index.html',context={'data': all_posts, 'topics': all_themes, 'role_id': user.role_id, 'username': user.username})
-                else:
+        action = request.POST.get('action')
+        if action == 'Login':
+            if role_id is None:
+                username = request.POST.get('username')
+                password = request.POST.get('password')
+                try:
+                    user = User_Accaunt.objects.get(login=username, password=password)
+                    if user is not None:
+                        request.session['role_id'] = user.role_id
+                        request.session['username'] = user.username
+                        return render(request, 'index.html',
+                                      context={'data': all_posts, 'topics': all_themes, 'role_id': user.role_id,
+                                               'username': user.username})
+                    else:
+                        return redirect('/')
+                except User_Accaunt.DoesNotExist:
                     return redirect('/')
-            except User_Accaunt.DoesNotExist:
-                return redirect('/')
-        else:
-            return logout_wiev(request)
+            else:
+                return logout_wiev(request)
     else:
         return render(request, 'index.html', context={'data': all_posts, 'topics': all_themes})
-
-
-def post_edit(request, pk):
-    role_id = request.session.get('role_id', None)
-    post = get_object_or_404(Post, pk=pk)
-    all_themes = Topic.objects.all()
-    return render(request, 'blog/post_edit.html', {'post': post, 'topics': all_themes, 'role_id': role_id})
 
 
 def delete_post(request, pk):
@@ -49,8 +45,10 @@ def delete_post(request, pk):
 
 def edit_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    print(post.id)
-    return render(request, 'blog/post_edit.html', {'post_id': post.id, 'post_head': post.head, 'post_content' : post.content, 'post_topic' : post.topic.name})
+    all_themes = Topic.objects.all()
+    username = request.session.get('username', None)
+
+    return render(request, 'blog/post_edit.html', {'username': username,'post_id': post.id, 'topics': all_themes, 'post_head': post.head, 'post_content' : post.content, 'post_topic' : post.topic.name})
 
 
 def logout_wiev(request):
@@ -61,6 +59,10 @@ def logout_wiev(request):
     else:
         # Если запрос не является POST, перенаправляем пользователя на главную страницу
         return HttpResponseRedirect(reverse('index'))
+
+def post_add(request):
+    all_themes = Topic.objects.all()
+    return render(request, 'blog/post_add.html',context={'topics': all_themes})
 
 
 def role(request):
