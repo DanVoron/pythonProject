@@ -106,8 +106,13 @@ footer{
     margin-bottom: 25px;
     margin-top: -30px;
 }
+.formstyle{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 .AuthButt{
-    width: 70%;
+    width: 120px;
     align-self:center;
     padding: 1%;
     border-width: 1px;
@@ -120,7 +125,6 @@ footer{
 
 .userquitButt{
     margin-top: 5px;
-    width: 30%;
 }
 
 .RegLogContaienr{
@@ -133,11 +137,18 @@ footer{
     align-items: center;
     justify-content: space-between;
 }
+.AddCommButt{
+    background-color: transparent;
+    border-radius: 5px;
+    font-size: 12px;
+    padding: 5px;
+    margin-bottom:15px ;
+}
 .UserQuitContainer{
     
     margin-top: 5%;
-    width: 80%;
-    height: 80px;
+    width: 100%;
+    height: 150px;
     display: flex;
     text-align: center;
     align-self: center;

@@ -64,14 +64,17 @@
         <div class="NewsThemesContainer">
             {% if role_id is None %}
             <div class="RegLogContaienr">
-                <form  method="post" action="">
+                <form  method="post" action="" class="formstyle">
                     {% csrf_token %}
                     <label>Логин <br> <input type="text" name="username" placeholder="Логин" ></label>
                     <label>Пароль <br><input type="password" name="password" placeholder="Пароль" ></label>
-                    <button class="AuthButt"> Войти </button> 
+                    <div class="testing">
+                        <button class="AuthButt"> Войти </button> 
+                    </div>
                 </form>
-                
-                <button class="AuthButt" onclick="Goida2()">Регистрация</button>
+                <div class="centerbutts">
+                    <button class="AuthButt" onclick="Goida2()">Регистрация</button>
+                </div>
             </div>
             {% endif %}
 
@@ -79,6 +82,7 @@
             <div class="UserQuitContainer">
                 <form action="{% url 'logout' %}" method="post">
                     {% csrf_token %}
+                    <p>Здраствуйте,<br> {{ username }}</p>
                     <button class="AuthButt userquitButt" type="submit">Выйти</button>
                 </form>
             </div>
