@@ -6,24 +6,22 @@
     <link rel="icon" href="{% static 'img\logoforsite.svg' %}">
     <link rel="stylesheet" href="{% static 'css/index.css'%}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classic Forps</title>
+    <title>Forps</title>
 </head>
 <body>
     <div class="regPage">
         <div class="regMenu">
-            <div class="regContainer">
-                <button id="extBUTT" class="ExitButt" onclick="Goida()">X</button>
+            <button id="extBUTT" class="ExitButt" onclick="Goida()">X</button>
                 <form  method="post" action="" class="formstyle">
-                {% csrf_token }
+                {% csrf_token %}
                 <label class="regMenuRowLabel">Имя</label>
-                <input type="text" name="Username" placeholder="Введите имя">
+                <input class="RegInput" type="text" name="Username" placeholder="Введите имя">
                 <label class="regMenuRowLabel" >Логин</label>
-                <input type="text" name="Login" placeholder="Никнейм" >
+                <input class="RegInput" type="text" name="Login" placeholder="Никнейм" >
                 <label class="regMenuRowLabel">Пароль</label>
-                <input type="text" name="Password" placeholder="Пароль" >
-                <button id="RegButt" name="action" value="Reg">ПОДТВЕРДИТЬ</button>
+                <input class="RegInput" type="text" name="Password" placeholder="Пароль" >
+                <button class="RegButt" id="RegButt" name="action" value="Reg">ПОДТВЕРДИТЬ</button>
                 </form>
-            </div>
         </div>
     </div>
     <header>
@@ -31,7 +29,7 @@
         <div class="HeaderTextContainer">
             <div class="HeaderTextHolder">
                 <label class="HeaderText">FORPS</label>
-                <label class="NormalText">ДЕНЬГИ– ХОРОШИЙ СЛУГА, НО ПЛОХОЙ ХОЗЯИН.</label>
+                <label class="NormalText">ДЕНЬГИ – ХОРОШИЙ СЛУГА, НО ПЛОХОЙ ХОЗЯИН.</label>
             </div>
 
         </div>
@@ -50,12 +48,14 @@
                 <div class="NewsTextContaienr">
                     <div class="WhiteCubeGlav">
                         <a href="{% url 'post_list' i.pk %}">{{i.head}}</a>
-                        {% if role_id == 2 %}
                         <div class="PostAddButtsContainer">
+                            {% if role_id == 2 %}
                             <button class="PostButts" onclick="location.href='{% url 'post_edit' i.pk %}'"> <img class="PostButtsPhotos" src="{% static 'img/ediit.svg' %}" alt="edit"></button>
                             <button class="PostButts" onclick="location.href='{% url 'delete_post' i.pk %}'"> <img class="PostButtsPhotos" src="{% static 'img/traaash.svg' %}" alt="del"></button>
-                        </div>
-                        {% endif %}
+                            {% endif %}
+                            <label class="timeShow">{{i.publish_datetime| date:"d/m/Y H:i"}}</label>
+                        </div>  
+                        
                     </div>
                     <div class="WhiteCubeOpis" ><p class="PostText" maxlength="5">{{i.content}}</p></div>
                 </div>
@@ -91,8 +91,6 @@
 
             <p><b>Выбрать тему:</b></p>
             <div class="ThemesContainer">
-                <a class="archons" href="{% url 'coffee' %}" target="_blank">Перейти на кофе</a>
-
                 {%for i in topics%}
                 <a class="archons" href="{% url 'index_page_themed' i.pk %}" > {{i.name}}</a>
                 {%endfor%}

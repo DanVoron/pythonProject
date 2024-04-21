@@ -30,7 +30,7 @@
         <div class="HeaderTextContainer">
             <div class="HeaderTextHolder">
                 <label class="HeaderText">FORPS</label>
-                <label class="NormalText">ДЕНЬГИ– ХОРОШИЙ СЛУГА, НО ПЛОХОЙ ХОЗЯИН.</label>
+                <label class="NormalText">ДЕНЬГИ – ХОРОШИЙ СЛУГА, НО ПЛОХОЙ ХОЗЯИН.</label>
             </div>
 
         </div>
@@ -61,6 +61,7 @@
             <div class="CommentItem">
                 <div class="UserContainer">
                     <label class="UserLabel">{{ comment.user.username }}</label>
+                    <label class="timeShow">{{comment.publish_datetime | date:"d/m/Y H:i"}}</label>
                 </div>
                 <label class="CommLabel">{{ comment.content }}</label>
             </div>
@@ -100,8 +101,6 @@
 
         <p><b>Выбрать тему:</b></p>
         <div class="ThemesContainer">
-            <a class="archons" href="{% url 'coffee' %}" target="_blank">Перейти на кофе</a>
-
             {%for i in topics%}
             <a class="archons" href="{% url 'index_page_themed' i.pk %}" > {{i.name}}</a>
             {%endfor%}
