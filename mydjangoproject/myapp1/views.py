@@ -11,7 +11,7 @@ def index_page(request):
     all_posts = Post.objects.all()
     all_themes = Topic.objects.all()
     role_id = request.session.get('role_id', None)
-    username = request.session.get('username',None)
+    username = request.session.get('username', None)
     if request.method == 'POST':
         if role_id is None:
             username = request.POST.get('username')
@@ -23,7 +23,7 @@ def index_page(request):
                     print(username)
                     request.session['role_id'] = user.role_id
                     request.session['username'] = user.username
-                    return render(request, 'index.html', context={'data': all_posts, 'topics': all_themes, 'role_id' : user.role_id, 'username' : user.username })
+                    return render(request, 'index.html',context={'data': all_posts, 'topics': all_themes, 'role_id': user.role_id, 'username': user.username})
                 else:
                     return redirect('/')
             except User_Accaunt.DoesNotExist:
@@ -34,12 +34,23 @@ def index_page(request):
         return render(request, 'index.html', context={'data': all_posts, 'topics': all_themes})
 
 
-
 def post_edit(request, pk):
     role_id = request.session.get('role_id', None)
     post = get_object_or_404(Post, pk=pk)
     all_themes = Topic.objects.all()
     return render(request, 'blog/post_edit.html', {'post': post, 'topics': all_themes, 'role_id': role_id})
+
+
+def delete_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.delete()
+    return redirect(reverse('index'))
+
+
+def edit_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    print(post.id)
+    return render(request, 'blog/post_edit.html', {'post_id': post.id, 'post_head': post.head, 'post_content' : post.content, 'post_topic' : post.topic.name})
 
 
 def logout_wiev(request):
@@ -51,14 +62,16 @@ def logout_wiev(request):
         # Если запрос не является POST, перенаправляем пользователя на главную страницу
         return HttpResponseRedirect(reverse('index'))
 
+
 def role(request):
     role_id = request.session.get('role_id', None)
     return {'role_id': role_id}
 
+
 def coffe_page(request):
     all_posts = Post.objects.all()
-
     return render(request, 'Coffee.html', context={'data': all_posts})
+
 
 def post_list(request, pk):
     post = get_object_or_404(Post, pk=pk)

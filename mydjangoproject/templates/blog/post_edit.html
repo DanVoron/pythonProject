@@ -38,13 +38,13 @@
     <div class="PostContainer">
         <div class="HeaderContainer">
             <button class="BackButt" onclick="document.location='{% url 'index' %}'">&lt;&lt;&lt;</button>
-             <h2>{{ post.head }}</h2>
+             <h2>{{ post_head }}</h2>
         </div>
         <div class="NewCommentsContainer">
-            <textarea  class="comment" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto eius maxime sed, dignissimos dicta quod, asperiores excepturi perspiciatis autem ratione alias hic earum voluptates ipsam minus ad cum quam natus.</textarea>
+            <textarea  class="comment" >{{ post_content }}</textarea>
             <div class="buttContainers">
                 <select name="pets" id="themes-select">
-                    <option value="">Без темы</option>
+                    <option value="">{{ post_topic }}</option>
                     {%for i in topics%}
                     <option class="archons"> {{i.name}}</option>
                     {%endfor%}
@@ -64,7 +64,6 @@
                 <button class="AuthButt"> Войти </button>
                 <button class="AuthButt" onclick="Goida2()">Регистрация</button>
             </form>
-            
         </div>
         {% endif %}
 

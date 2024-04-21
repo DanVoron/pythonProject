@@ -22,6 +22,8 @@ from myapp1.views import post_list
 from myapp1.views import index_page_themed
 from myapp1.views import logout_wiev
 from myapp1.views import post_edit
+from myapp1.views import edit_post,delete_post
+
 app_name='myapp1'
 
 urlpatterns = [
@@ -31,5 +33,7 @@ urlpatterns = [
     path('post/<int:pk>/',post_list,name='post_list'),
     path('<int:pk>/',index_page_themed,name='index_page_themed'),
     path('logout/', logout_wiev, name='logout'),
-    path('addpost/<int:pk>',post_edit,name='addpost')
+    path('addpost/<int:pk>',post_edit,name='addpost'),
+    path('delete_post/<int:pk>/', delete_post, name='delete_post'),
+    path('postedit/<int:pk>/', edit_post, name='post_edit'),
 ]
