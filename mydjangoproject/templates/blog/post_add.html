@@ -37,22 +37,25 @@
     </header>
     <main>
         <div class="PostContainer">
-            <div class="HeaderContainer">
-                <button class="BackButt" onclick="document.location='{% url 'index' %}'">&lt;&lt;&lt;</button>
-                 <input type="text" placeholder="Название поста" class="PostHeader">
-            </div>
-            <div class="NewCommentsContainer">
-                <textarea placeholder="Текст поста"  class="comment" ></textarea>
-                <div class="buttContainers">
-                    <select name="pets" id="themes-select">
-                        <option value="" disabled selected>Выберите тему</option>
-                        {%for i in topics%}
-                        <option class="archons"> {{i.name}}</option>
-                        {%endfor%}
-                      </select>
-                    <button class="OstavComm">Добавить пост</button>
+            <form method="post" action="" class="">
+                {% csrf_token %}
+                <div class="HeaderContainer">
+                    <button class="BackButt" onclick="document.location='{% url 'index' %}'">&lt;&lt;&lt;</button>
+                     <input type="text" name="PostHead" placeholder="Название поста" class="PostHeader">
                 </div>
-            </div>
+                <div class="NewCommentsContainer">
+                    <textarea placeholder="Текст поста" name="PostBudy"  class="comment" ></textarea>
+                    <div class="buttContainers">
+                        <select name="pets" id="themes-select">
+                            <option value="" disabled selected>Выберите тему</option>
+                            {%for i in topics%}
+                            <option value="{{ i.id }}">{{ i.name }}</option>
+                            {%endfor%}
+                          </select>
+                        <button id="AddPostBtn" name="action" value="Add">Добавить пост</button>
+                    </div>
+                </div>
+            </form>
         </div>
         <div class="NewsThemesContainer">
             {% if role_id is None %}

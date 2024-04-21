@@ -1,9 +1,8 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from myapp1.models import Post, Comment, Topic, User_Accaunt
+from myapp1.models import Post, Comment, Topic, User_Accaunt, CommentForm
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .forms import CommentForm
 from datetime import datetime
 
 
@@ -68,7 +67,20 @@ def logout_wiev(request):
         return HttpResponseRedirect(reverse('index'))
 
 def post_add(request):
+    all_posts = Post.objects.all()
     all_themes = Topic.objects.all()
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        if action == 'Add':
+            now = datetime.now()
+            dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
+            head = request.POST.get('PostHead')
+            content = request.POST.get('PostBudy')
+            topik = request.POST.get('pets')
+            topic = get_object_or_404(Topic, id=topik)
+            new_post = Post(head=head, content=content, publish_datetime=dt_string, topic=topic, image = "Imaginating ebalo")
+            new_post.save()
+            return render(request, 'index.html', context={'data': all_posts, 'topics': all_themes})
     return render(request, 'blog/post_add.html',context={'topics': all_themes})
 
 
@@ -99,8 +111,6 @@ def post_list(request, pk):
             comment = form.save(commit=False)
             comment.post = post
             username = request.session.get('username', None)
-            # Предполагаем, что у вас есть способ связать текущего пользователя с экземпляром User_Accaunt
-            # Например, вы можете использовать имя пользователя или другой уникальный идентификатор
             user_accaunt = User_Accaunt.objects.get(username=username)
             comment.user = user_accaunt
             comment.publish_datetime = dt_string

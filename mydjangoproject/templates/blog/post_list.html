@@ -48,7 +48,7 @@
         <form method="post" class="formidk">
             {% csrf_token %}
             <label>Оставить комментарий</label>
-            <textarea class="commentari" placeholder="Комментарий"></textarea>
+            <textarea name="content" class="commentari" placeholder="Комментарий"></textarea>
             <button type="submit" class="AddCommButt">Добавить комментарий</button>
         </form>
         {%endif%}

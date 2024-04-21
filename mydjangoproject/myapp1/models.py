@@ -1,4 +1,5 @@
 from django.db import models
+from django import forms
 class Topic(models.Model):
     name = models.CharField(max_length=40)
 
@@ -60,6 +61,11 @@ class Comment(models.Model):
     class Meta:
         managed = False
         db_table = 'comment'
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['content']
 
     def __str__(self):
         return self.content
