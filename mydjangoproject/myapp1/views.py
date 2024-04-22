@@ -103,6 +103,16 @@ def post_add(request):
             new_post = Post(head=head, content=content, publish_datetime=dt_string, topic=topic, image = "Imaginating ebalo")
             new_post.save()
             return render(request, 'index.html', context={'data': all_posts, 'topics': all_themes})
+        if action == 'AddTopic':
+            Name = request.POST.get('NameTopic')
+            new_Topic = Topic(name=Name)
+            new_Topic.save()
+            redirect(request.META.get('HTTP_REFERER', '/') + '?next=' + request.path)
+        if action == 'DelTopic':
+            topik = request.POST.get('TopicList')
+            if topik:
+                Topic.objects.get(id=int(topik)).delete()
+                return redirect('/')
     return render(request, 'blog/post_add.html',context={'topics': all_themes})
 
 
