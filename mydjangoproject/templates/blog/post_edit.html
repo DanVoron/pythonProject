@@ -38,13 +38,14 @@
     <div class="PostContainer">
         <form method="post" action="" class="">
             {% csrf_token %}
-            <div class="PostContainer">
                 <div class="HeaderContainer">
                     <button class="BackButt" onclick="document.location='{% url 'index' %}'">&lt;&lt;&lt;</button>
                      <h2 class="h2lol">Редактирование поста</h2>
                 </div>
                 <div class="NewCommentsContainer">
+                    <p>Название</p>
                     <input type="text" value="{{ post_head }}" name="PostHead" class="PostHeader">
+                    <p>Контент</p>
                     <textarea  name = "PostBudy" class="comment" >{{ post_content }}</textarea>
                     <div class="buttContainers">
                         <select name="pets" id="themes-select">
@@ -55,9 +56,25 @@
                         <button id="EditPostBtn" name="action" value="Edit" class="OstavComm">Изменить пост</button>
                     </div>
                 </div>
-                
-            </div>
         </form>
+
+        <p>Редактирование тем</p>
+        <div class="ThemesRedactorContainer">
+            <div class="RedacThemes">
+                <input type="text" name="" id="">
+                <button class="ThemesBUTT">Добавить тему</button>
+            </div>
+            <hr>
+            <div class="DelThemes">
+                <select id="themes-select">
+                    <option value="" disabled selected>Выберите тему</option>
+                    {%for i in topics%}
+                    <option value="{{ i.id }}">{{ i.name }}</option>
+                    {%endfor%}
+                  </select>
+                <button class="ThemesBUTT">Удалить тему</button>
+            </div>
+        </div>
     </div>
     <div class="NewsThemesContainer">
         {% if role_id is None %}

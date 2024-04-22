@@ -40,9 +40,12 @@
                 {% csrf_token %}
                 <div class="HeaderContainer">
                     <button class="BackButt" onclick="document.location='{% url 'index' %}'">&lt;&lt;&lt;</button>
-                     <input type="text" name="PostHead" placeholder="Название поста" class="PostHeader">
+                     <h2>Добавление поста</h2>
                 </div>
                 <div class="NewCommentsContainer">
+                    <p>Название</p>
+                    <input type="text" name="PostHead" placeholder="Название поста" class="PostHeader">
+                    <p>Контент</p>
                     <textarea placeholder="Текст поста" name="PostBudy"  class="comment" ></textarea>
                     <div class="buttContainers">
                         <select name="pets" id="themes-select">
