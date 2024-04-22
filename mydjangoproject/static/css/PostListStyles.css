@@ -12,13 +12,17 @@
 }
 .PostContainer{
     background-color: #ffffff;
-    width: 95%;
+    width: 100%;
+    max-width: 95%;
     min-height: 500px;
     padding: 40px;
 }
 h2{
     font-size: 52px;
     margin: 2% 0 2% 0;
+    width: 100%;
+    overflow-x: hidden;
+    word-break: break-all;
 }
 .HeaderContainer{
     display: flex;
@@ -109,9 +113,11 @@ h2{
     display: flex;
     justify-content: flex-end;
 }
+.h2lol{
+    font-size: 48px;
+}
 .PostHeader{
     width: 50%;
-    margin-left: 15px;
     font-size: 30px;
 }
 .formidk {
@@ -131,4 +137,42 @@ h2{
     margin-bottom: 15px;
     background-color: #F1F1F1;
     border-radius: 20px 20px 20px 0;
+}
+.gege{
+    margin: 20px 0 20px 0;
+}
+#AddPostBtn{
+    background:transparent;
+    font-size: 16px;
+}
+#AddPostBtn:hover{
+    background-color: rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+#AddPostBtn:active{
+    background-color: rgba(0,0,0,0.3);
+    cursor: pointer;
+}
+.buttContainers{
+    margin-top: 8px;
+}
+.ThemesRedactorContainer{
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+}
+.RedacThemes{
+    display: flex;
+    flex-direction: column;
+}
+.DelThemes{
+    display: flex;
+    flex-direction: column;
+}
+.ThemesBUTT{
+    background-color: transparent;
+    border-radius: 20px;
+    border-width: 1px;
+    margin-top: 5px;
+
 }
