@@ -25,6 +25,7 @@ p{
     overflow: hidden;
     white-space:pre-line;
     text-overflow: ellipsis;
+    word-wrap: break-word;
     margin: 5px;
 }
 .PostText{
