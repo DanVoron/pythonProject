@@ -20,6 +20,7 @@
                 <input class="RegInput" type="text" name="Login" placeholder="Никнейм" >
                 <label class="regMenuRowLabel">Пароль</label>
                 <input class="RegInput" type="text" name="Password" placeholder="Пароль" >
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
                 <button class="RegButt" id="RegButt" name="action" value="Reg">ПОДТВЕРДИТЬ</button>
                 </form>
         </div>

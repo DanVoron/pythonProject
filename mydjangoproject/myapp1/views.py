@@ -70,8 +70,9 @@ def edit_post(request, pk):
 def logout_wiev(request):
     if request.method == 'POST':
         logout(request)
-        # После выхода из системы перенаправляем пользователя на главную страницу
-        return HttpResponseRedirect(reverse('index'))
+        # Получаем URL для перенаправления после выхода
+        next_url = request.POST.get('next', reverse('index'))
+        return HttpResponseRedirect(next_url)
     else:
         # Если запрос не является POST, перенаправляем пользователя на главную страницу
         return HttpResponseRedirect(reverse('index'))
@@ -101,31 +102,62 @@ def role(request):
 def Nickname(request):
     nickname = request.session.get('username',None)
     return {'username': nickname}
-
+def Userlogin(request):
+    role_id = request.session.get('role_id', None)
+    if role_id is None:
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        try:
+            user = User_Accaunt.objects.get(login=username, password=password)
+            if user is not None:
+                request.session['role_id'] = user.role_id
+                request.session['username'] = user.username
+                nickname_dict = Nickname(request)
+                nickname = nickname_dict.get('username', '')
+                return redirect(request.META.get('HTTP_REFERER', '/') + '?next=' + request.path + 'username=' + nickname)
+            else:
+                return redirect('/')
+        except User_Accaunt.DoesNotExist:
+            return redirect('/')
+    else:
+        return logout_wiev(request)
+def UserReg(request):
+    name = request.POST.get('Username')
+    login = request.POST.get('Login')
+    password = request.POST.get('Password')
+    new_user = User_Accaunt(username=name, login=login, password=password, role_id=1)
+    new_user.save()
+    return redirect(request.META.get('HTTP_REFERER', '/') + '?next=' + request.path + 'username' + name)
 def coffe_page(request):
     all_posts = Post.objects.all()
     return render(request, 'Coffee.html', context={'data': all_posts})
-
 
 def post_list(request, pk):
     all_themes = Topic.objects.all()
     post = get_object_or_404(Post, pk=pk)
     comments = Comment.objects.filter(post_id=pk)
     username = request.session.get('username', None)
+    form = CommentForm()
     if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            now = datetime.now()
-            dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
-            print(dt_string)
-            comment = form.save(commit=False)
-            comment.post = post
-            username = request.session.get('username', None)
-            user_accaunt = User_Accaunt.objects.get(username=username)
-            comment.user = user_accaunt
-            comment.publish_datetime = dt_string
-            comment.save()
-            return redirect('post_list', pk=post.pk)
+        action = request.POST.get('action')
+        if action == 'Login':
+            Userlogin(request)
+        elif action == 'Reg':
+            UserReg(request)
+        elif action == 'AddCom':
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                now = datetime.now()
+                dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
+                print(dt_string)
+                comment = form.save(commit=False)
+                comment.post = post
+                username = request.session.get('username', None)
+                user_accaunt = User_Accaunt.objects.get(username=username)
+                comment.user = user_accaunt
+                comment.publish_datetime = dt_string
+                comment.save()
+                return redirect('post_list', pk=post.pk)
     else:
         form = CommentForm()
     return render(request, 'blog/post_list.html', {'post': post, 'comments': comments, 'form': form,'topics':all_themes, 'username': username})

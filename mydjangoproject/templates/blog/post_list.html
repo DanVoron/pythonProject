@@ -11,18 +11,17 @@
 <body>
     <div class="regPage">
         <div class="regMenu">
-            <div class="regContainer">
-                <button id="extBUTT" class="ExitButt" onclick="Goida()">X</button>
+            <button id="extBUTT" class="ExitButt" onclick="Goida()">X</button>
+                <form  method="post" action="" class="formstyle">
+                {% csrf_token %}
                 <label class="regMenuRowLabel">Имя</label>
-                <input class="NewUserInput" value="DanVoron">
+                <input class="RegInput" type="text" name="Username" placeholder="Введите имя">
                 <label class="regMenuRowLabel" >Логин</label>
-                <input class="NewUserInput" value="DanVoron">
+                <input class="RegInput" type="text" name="Login" placeholder="Никнейм" >
                 <label class="regMenuRowLabel">Пароль</label>
-                <input class="NewUserInput" type="password" value="1234">
-                <label class="regMenuRowLabel">Пароль ещё раз</label>
-                <input class="NewUserInput" type="password" value="1234">
-                <button id="RegButt">ПОДТВЕРДИТЬ</button>
-            </div>
+                <input class="RegInput" type="text" name="Password" placeholder="Пароль">
+                <button class="RegButt" id="RegButt" name="action" value="Reg">ПОДТВЕРДИТЬ</button>
+                </form>
         </div>
     </div>
     <header>
@@ -49,7 +48,7 @@
             {% csrf_token %}
             <label>Оставить комментарий</label>
             <textarea name="content" class="commentari" placeholder="Комментарий"></textarea>
-            <button type="submit" class="AddCommButt">Добавить комментарий</button>
+            <button type="submit" class="AddCommButt" name="action" value="AddCom">Добавить комментарий</button>
         </form>
         {%endif%}
 
@@ -77,12 +76,13 @@
                 {% csrf_token %}
                 <label>Логин <br> <input type="text" name="username" placeholder="Логин" ></label>
                 <label>Пароль <br><input type="password" name="password" placeholder="Пароль" ></label>
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
                 <div class="testing">
-                    <button class="AuthButt"> Войти </button> 
+                    <button class="AuthButt" name="action" value="Login"> Войти </button>
                 </div>
             </form>
             <div class="centerbutts">
-                <button class="AuthButt" onclick="Goida2()">Регистрация</button>
+                <button class="AuthButt" onclick="Goida2()" >Регистрация</button>
             </div>
         </div>
         {% endif %}
@@ -91,10 +91,9 @@
         <div class="UserQuitContainer">
             <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
-                {% if username %}
-                <p>Добро пожаловать, <br> {{ username }}!</p>
-                {% endif %}
-                <button class="AuthButt userquitButt" type="submit">Выйти</button>
+                <p>Добро пожаловать, {{ username }}</p>
+                <input type="hidden" name="next" value="{{ request.path }}">
+                <button type="submit">Выйти</button>
             </form>
         </div>
         {% endif %}
