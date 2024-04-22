@@ -11,18 +11,17 @@
 <body>
     <div class="regPage">
         <div class="regMenu">
-            <div class="regContainer">
-                <button id="extBUTT" class="ExitButt" onclick="Goida()">X</button>
+            <button id="extBUTT" class="ExitButt" onclick="Goida()">X</button>
+                <form  method="post" action="" class="formstyle">
+                {% csrf_token %}
                 <label class="regMenuRowLabel">Имя</label>
-                <input class="NewUserInput" value="DanVoron">
+                <input class="RegInput" type="text" name="Username" placeholder="Введите имя">
                 <label class="regMenuRowLabel" >Логин</label>
-                <input class="NewUserInput" value="DanVoron">
+                <input class="RegInput" type="text" name="Login" placeholder="Никнейм" >
                 <label class="regMenuRowLabel">Пароль</label>
-                <input class="NewUserInput" type="password" value="1234">
-                <label class="regMenuRowLabel">Пароль ещё раз</label>
-                <input class="NewUserInput" type="password" value="1234">
-                <button id="RegButt">ПОДТВЕРДИТЬ</button>
-            </div>
+                <input class="RegInput" type="text" name="Password" placeholder="Пароль" >
+                <button class="RegButt" id="RegButt" name="action" value="Reg">ПОДТВЕРДИТЬ</button>
+                </form>
         </div>
     </div>
     <header>
@@ -42,9 +41,10 @@
             <div class="PostContainer">
                 <div class="HeaderContainer">
                     <button class="BackButt" onclick="document.location='{% url 'index' %}'">&lt;&lt;&lt;</button>
-                     <input type="text" value="{{ post_head }}" name="PostHead" class="PostHeader">
+                     <h2 class="h2lol">Редактирование поста</h2>
                 </div>
                 <div class="NewCommentsContainer">
+                    <input type="text" value="{{ post_head }}" name="PostHead" class="PostHeader">
                     <textarea  name = "PostBudy" class="comment" >{{ post_content }}</textarea>
                     <div class="buttContainers">
                         <select name="pets" id="themes-select">
@@ -55,6 +55,7 @@
                         <button id="EditPostBtn" name="action" value="Edit" class="OstavComm">Изменить пост</button>
                     </div>
                 </div>
+                
             </div>
         </form>
     </div>
