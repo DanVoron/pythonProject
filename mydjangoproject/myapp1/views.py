@@ -45,7 +45,7 @@ def delete_post(request, pk):
     username = request.session.get('username', None)
     post = get_object_or_404(Post, pk=pk)
     post.delete()
-    return redirect(reverse('index',{'username': username}))
+    return redirect('index')
 
 
 def edit_post(request, pk):
@@ -64,7 +64,17 @@ def edit_post(request, pk):
             topik = request.POST.get('pets')
             topic = get_object_or_404(Topic, id=topik)
             Post.objects.filter(id=post.id).update(head=head, content=content, publish_datetime=dt_string, topic=topic, image = "Imaginating ebalo")
-            return render(request, 'index.html', context={'data': all_posts, 'topics': all_themes})
+            return render(request, 'blog/post_edit.html', context={'data': all_posts, 'topics': all_themes})
+        if action == 'AddTopic':
+            Name = request.POST.get('NameTopic')
+            new_Topic = Topic(name=Name)
+            new_Topic.save()
+            redirect(request.META.get('HTTP_REFERER', '/') + '?next=' + request.path)
+        if action == 'DelTopic':
+            topik = request.POST.get('TopicList')
+            if topik:
+                Topic.objects.get(id=int(topik)).delete()
+                return redirect('/')
     return render(request, 'blog/post_edit.html', {'username': username,'post_id': post.id, 'topics': all_themes, 'post_head': post.head, 'post_content' : post.content, 'post_topic' : post.topic.name})
 
 

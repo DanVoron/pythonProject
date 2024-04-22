@@ -58,23 +58,26 @@
                 </div>
         </form>
 
-        <p>Редактирование тем</p>
-        <div class="ThemesRedactorContainer">
-            <div class="RedacThemes">
-                <input type="text" name="" id="">
-                <button class="ThemesBUTT">Добавить тему</button>
+        <form method="post" action="" class="">
+            {% csrf_token %}
+            <p>Редактирование тем</p>
+            <div class="ThemesRedactorContainer">
+                <div class="RedacThemes">
+                    <input type="text" name="NameTopic" id="">
+                    <button class="ThemesBUTT" id="AddTopicBtn" name="action" value="AddTopic">Добавить тему</button>
+                </div>
+                <hr>
+                <div class="DelThemes">
+                    <select id="themes-select" name="TopicList">
+                        <option value="" disabled selected>Выберите тему</option>
+                        {%for i in topics%}
+                        <option value="{{ i.id }}">{{ i.name }}</option>
+                        {%endfor%}
+                      </select>
+                    <button class="ThemesBUTT" id="DelTopicBtn" name="action" value="DelTopic">Удалить тему</button>
+                </div>
             </div>
-            <hr>
-            <div class="DelThemes">
-                <select id="themes-select">
-                    <option value="" disabled selected>Выберите тему</option>
-                    {%for i in topics%}
-                    <option value="{{ i.id }}">{{ i.name }}</option>
-                    {%endfor%}
-                  </select>
-                <button class="ThemesBUTT">Удалить тему</button>
-            </div>
-        </div>
+        </form>
     </div>
     <div class="NewsThemesContainer">
         {% if role_id is None %}
