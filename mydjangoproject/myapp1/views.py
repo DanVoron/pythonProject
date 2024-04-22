@@ -10,6 +10,7 @@ def index_page(request):
     all_posts = Post.objects.all()
     all_themes = Topic.objects.all()
     role_id = request.session.get('role_id', None)
+    username = request.GET.get('username', None)
     if request.method == 'POST':
         action = request.POST.get('action')
         if action == 'Reg':
@@ -111,10 +112,8 @@ def Userlogin(request):
             user = User_Accaunt.objects.get(login=username, password=password)
             if user is not None:
                 request.session['role_id'] = user.role_id
-                request.session['username'] = user.username
-                nickname_dict = Nickname(request)
-                nickname = nickname_dict.get('username', '')
-                return redirect(request.META.get('HTTP_REFERER', '/') + '?next=' + request.path + 'username=' + nickname)
+                gg =request.session['username'] = user.username
+                return redirect(request.META.get('HTTP_REFERER', '/') + '?next=' + request.path + '&username=' + gg)
             else:
                 return redirect('/')
         except User_Accaunt.DoesNotExist:
@@ -127,7 +126,7 @@ def UserReg(request):
     password = request.POST.get('Password')
     new_user = User_Accaunt(username=name, login=login, password=password, role_id=1)
     new_user.save()
-    return redirect(request.META.get('HTTP_REFERER', '/') + '?next=' + request.path + 'username' + name)
+    return redirect(request.META.get('HTTP_REFERER', '/') + '?next=' + request.path + '&username=' + name)
 def coffe_page(request):
     all_posts = Post.objects.all()
     return render(request, 'Coffee.html', context={'data': all_posts})
@@ -136,7 +135,6 @@ def post_list(request, pk):
     all_themes = Topic.objects.all()
     post = get_object_or_404(Post, pk=pk)
     comments = Comment.objects.filter(post_id=pk)
-    username = request.session.get('username', None)
     form = CommentForm()
     if request.method == 'POST':
         action = request.POST.get('action')
@@ -160,7 +158,7 @@ def post_list(request, pk):
                 return redirect('post_list', pk=post.pk)
     else:
         form = CommentForm()
-    return render(request, 'blog/post_list.html', {'post': post, 'comments': comments, 'form': form,'topics':all_themes, 'username': username})
+    return render(request, 'blog/post_list.html', {'post': post, 'comments': comments, 'form': form,'topics':all_themes})
 
 
 def index_page_themed(request, pk):
