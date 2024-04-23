@@ -42,7 +42,7 @@ class Post(models.Model):
     content = models.CharField(max_length=10000)
     publish_datetime = models.DateTimeField()
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    image = models.CharField(max_length=1000)
+    image = models.ImageField(upload_to='images/')
 
     class Meta:
         managed = False

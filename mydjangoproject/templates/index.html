@@ -46,7 +46,7 @@
            <div class="postss">
             {% for i in data %}
             <div class="Posts">
-                <a class="AMOGUS" href="{% url 'post_list' i.pk %}"><img id="News" src="{% static 'img\BUCKET.jpg' %}" alt="NewsPhoto"></a>
+                <a class="AMOGUS" href="{% url 'post_list' i.pk %}"><img id="News" src="{{ MEDIA_URL }}{{ i.image }}" alt="NewsPhoto"></a>
                 <div class="NewsTextContaienr">
                     <div class="WhiteCubeGlav">
                         <a class="PostName" href="{% url 'post_list' i.pk %}">{{i.head}}</a>
@@ -56,8 +56,7 @@
                             <button class="PostButts" onclick="location.href='{% url 'delete_post' i.pk %}'"> <img class="PostButtsPhotos" src="{% static 'img/traaash.svg' %}" alt="del"></button>
                             {% endif %}
                             <label class="timeShow">{{i.publish_datetime| date:"d/m/Y H:i"}}</label>
-                        </div>  
-                        
+                        </div>
                     </div>
                     <div class="WhiteCubeOpis" ><p class="PostText" maxlength="5">{{i.content}}</p></div>
                 </div>

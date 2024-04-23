@@ -23,6 +23,8 @@ from myapp1.views import index_page_themed
 from myapp1.views import logout_wiev
 from myapp1.views import edit_post,delete_post
 from myapp1.views import post_add
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name='myapp1'
 
@@ -36,4 +38,4 @@ urlpatterns = [
     path('delete_post/<int:pk>/', delete_post, name='delete_post'),
     path('postedit/<int:pk>/', edit_post, name='post_edit'),
     path('postadd/',post_add,name='post_add'),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

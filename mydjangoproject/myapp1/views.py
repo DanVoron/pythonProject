@@ -4,6 +4,7 @@ from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from datetime import datetime
+from mydjangoproject.settings import MEDIA_URL
 
 
 def index_page(request):
@@ -19,7 +20,7 @@ def index_page(request):
             password = request.POST.get('Password')
             new_user = User_Accaunt(username=name, login=login, password=password, role_id=1)
             new_user.save()
-            return render(request, 'index.html', context={'data': all_posts, 'topics': all_themes})
+            return render(request, 'index.html', context={'data': all_posts, 'topics': all_themes,'MEDIA_URL':MEDIA_URL})
         elif action == 'Login':
             if role_id is None:
                 username = request.POST.get('username')
@@ -30,7 +31,8 @@ def index_page(request):
                         request.session['role_id'] = user.role_id
                         request.session['username'] = user.username
                         return render(request, 'index.html',
-                                      context={'data': all_posts, 'topics': all_themes, 'role_id': user.role_id,'username': user.username})
+                                      context={'data': all_posts, 'topics': all_themes, 'role_id': user.role_id,
+                                               'username': user.username,'MEDIA_URL':MEDIA_URL})
                     else:
                         return redirect('/')
                 except User_Accaunt.DoesNotExist:
@@ -38,7 +40,7 @@ def index_page(request):
             else:
                 return logout_wiev(request)
     else:
-        return render(request, 'index.html', context={'data': all_posts, 'topics': all_themes})
+        return render(request, 'index.html', context={'data': all_posts, 'topics': all_themes,'MEDIA_URL':MEDIA_URL})
 
 
 def delete_post(request, pk):
@@ -63,7 +65,8 @@ def edit_post(request, pk):
             content = request.POST.get('PostBudy')
             topik = request.POST.get('pets')
             topic = get_object_or_404(Topic, id=topik)
-            Post.objects.filter(id=post.id).update(head=head, content=content, publish_datetime=dt_string, topic=topic, image = "Imaginating ebalo")
+            Post.objects.filter(id=post.id).update(head=head, content=content, publish_datetime=dt_string, topic=topic,
+                                                   image="Imaginating ebalo")
             return render(request, 'blog/post_edit.html', context={'data': all_posts, 'topics': all_themes})
         if action == 'AddTopic':
             Name = request.POST.get('NameTopic')
@@ -75,7 +78,9 @@ def edit_post(request, pk):
             if topik:
                 Topic.objects.get(id=int(topik)).delete()
                 return redirect('/')
-    return render(request, 'blog/post_edit.html', {'username': username,'post_id': post.id, 'topics': all_themes, 'post_head': post.head, 'post_content' : post.content, 'post_topic' : post.topic.name})
+    return render(request, 'blog/post_edit.html',
+                  {'username': username, 'post_id': post.id, 'topics': all_themes, 'post_head': post.head,
+                   'post_content': post.content, 'post_topic': post.topic.name})
 
 
 def logout_wiev(request):
@@ -87,6 +92,7 @@ def logout_wiev(request):
     else:
         # Если запрос не является POST, перенаправляем пользователя на главную страницу
         return HttpResponseRedirect(reverse('index'))
+
 
 def post_add(request):
     all_posts = Post.objects.all()
@@ -100,7 +106,8 @@ def post_add(request):
             content = request.POST.get('PostBudy')
             topik = request.POST.get('pets')
             topic = get_object_or_404(Topic, id=topik)
-            new_post = Post(head=head, content=content, publish_datetime=dt_string, topic=topic, image = "Imaginating ebalo")
+            new_post = Post(head=head, content=content, publish_datetime=dt_string, topic=topic,
+                            image="Imaginating ebalo")
             new_post.save()
             return render(request, 'index.html', context={'data': all_posts, 'topics': all_themes})
         if action == 'AddTopic':
@@ -113,16 +120,19 @@ def post_add(request):
             if topik:
                 Topic.objects.get(id=int(topik)).delete()
                 return redirect('/')
-    return render(request, 'blog/post_add.html',context={'topics': all_themes})
+    return render(request, 'blog/post_add.html', context={'topics': all_themes})
 
 
 def role(request):
     role_id = request.session.get('role_id', None)
     return {'role_id': role_id}
 
+
 def Nickname(request):
-    nickname = request.session.get('username',None)
+    nickname = request.session.get('username', None)
     return {'username': nickname}
+
+
 def Userlogin(request):
     role_id = request.session.get('role_id', None)
     if role_id is None:
@@ -132,7 +142,7 @@ def Userlogin(request):
             user = User_Accaunt.objects.get(login=username, password=password)
             if user is not None:
                 request.session['role_id'] = user.role_id
-                gg =request.session['username'] = user.username
+                gg = request.session['username'] = user.username
                 return redirect(request.META.get('HTTP_REFERER', '/') + '?next=' + request.path + '&username=' + gg)
             else:
                 return redirect('/')
@@ -140,6 +150,8 @@ def Userlogin(request):
             return redirect('/')
     else:
         return logout_wiev(request)
+
+
 def UserReg(request):
     name = request.POST.get('Username')
     login = request.POST.get('Login')
@@ -147,9 +159,12 @@ def UserReg(request):
     new_user = User_Accaunt(username=name, login=login, password=password, role_id=1)
     new_user.save()
     return redirect(request.META.get('HTTP_REFERER', '/') + '?next=' + request.path + '&username=' + name)
+
+
 def coffe_page(request):
     all_posts = Post.objects.all()
     return render(request, 'Coffee.html', context={'data': all_posts})
+
 
 def post_list(request, pk):
     all_themes = Topic.objects.all()
@@ -178,7 +193,8 @@ def post_list(request, pk):
                 return redirect('post_list', pk=post.pk)
     else:
         form = CommentForm()
-    return render(request, 'blog/post_list.html', {'post': post, 'comments': comments, 'form': form,'topics':all_themes})
+    return render(request, 'blog/post_list.html',
+                  {'post': post, 'comments': comments, 'form': form, 'topics': all_themes})
 
 
 def index_page_themed(request, pk):
