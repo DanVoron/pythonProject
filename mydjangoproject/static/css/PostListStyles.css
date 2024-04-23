@@ -161,14 +161,19 @@ h2{
     align-self: center;
     justify-content: space-between;
     width: 40%;
+    font-size: 24px;
 }
 .RedacThemes{
     display: flex;
     flex-direction: column;
+    margin:0 15px 0 15px;
+    font-size: 24px;
 }
 .DelThemes{
     display: flex;
     flex-direction: column;
+    margin:0 15px 0 15px;
+    font-size: 24px;
 }
 .ThemesBUTT{
     background-color: transparent;
@@ -176,8 +181,45 @@ h2{
     border-width: 1px;
     margin-top: 5px;
     width: fit-content;
+    font-size: 16px;
 }
 .CommentsList{
     display: flex;
     flex-direction: column-reverse;
+    font-size: 24px;
+}
+.themeeditor{
+    display: flex;
+    width: 100%;
+    margin-left: 60px;
+
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-size: 24px;
+}
+.themechanger{
+    display: flex;
+    margin-left: 70px;
+    margin-top: 20px;
+    font-size: 24px;
+}
+.ggz{
+    margin-left: auto;
+}
+#themes-select{
+    font-size: 16px;
+}
+.newtheme{
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+}
+.newthemeinput{
+}
+.zaeb{
+    margin: 0;
+}
+.vibiritetemu{
+    display: flex;
+    flex-direction: column;
 }

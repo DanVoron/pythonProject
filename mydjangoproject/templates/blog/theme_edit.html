@@ -41,43 +41,46 @@
                 <h2>Редаткирование тем</h2>
             </div>
 
-        <form method="post" action="" class="">
-            {% csrf_token %}
-            <p>Изменение тем</p>
-            <div class="ThemesRedactorContainer">
-                <div class="RedacThemes">
-                    <input type="text" name="NameTopic" id="">
-                    <button class="ThemesBUTT" id="AddTopicBtn" name="action" value="AddTopic">Добавить тему</button>
-                </div>
-                <hr>
-                <div class="DelThemes">
-                    <select id="themes-select" name="TopicList">
-                        <option value="" disabled selected>Выберите тему</option>
-                        {%for i in topics%}
-                        <option value="{{ i.id }}">{{ i.name }}</option>
-                        {%endfor%}
-                      </select>
-                    <button class="ThemesBUTT" id="DelTopicBtn" name="action" value="DelTopic">Удалить тему</button>
-                </div>
-                <hr>
-                <div class="DelThemes">
-                    <div>
-                        <p>Выберите тему</p>
+        <div class="center">
+            <form method="post" action="" class="themeeditor">
+                {% csrf_token %}
+                <div class="ThemesRedactorContainer">
+                    <div class="RedacThemes">
+                        <p>Добавление темы</p>
+                        <input type="text" name="NameTopic" id="" placeholder="Новая тема">
+                        <button class="ThemesBUTT" id="AddTopicBtn" name="action" value="AddTopic">Добавить тему</button>
+                    </div>
+                    <hr>
+                    <div class="DelThemes">
+                        <p>Удаление темы</p>
                         <select id="themes-select" name="TopicList">
                             <option value="" disabled selected>Выберите тему</option>
                             {%for i in topics%}
                             <option value="{{ i.id }}">{{ i.name }}</option>
                             {%endfor%}
                           </select>
+                        <button class="ThemesBUTT" id="DelTopicBtn" name="action" value="DelTopic">Удалить тему</button>
                     </div>
-                      <div>
-                        <p>Новое название темы</p>
-                        <input type="text">
-                      </div>
-                    <button class="ThemesBUTT" id="DelTopicBtn" name="action" value="DelTopic">Изменить тему</button>
                 </div>
+            </form>
+            <div class="themechanger">
+                <div class="vibiritetemu">
+                    <label>Выберите тему</label>
+                    <select id="themes-select" name="TopicList">
+                        <option value="" disabled selected>Выберите тему</option>
+                        {%for i in topics%}
+                        <option value="{{ i.id }}">{{ i.name }}</option>
+                        {%endfor%}
+                      </select>
+                </div>
+                  <div class="newtheme">
+                    <label>Новое название темы</label>
+                    <input type="text" placeholder="Новое название темы" class="lolgege">
+                    <button class="ThemesBUTT ggz" id="DelTopicBtn" name="action" value="DelTopic">Изменить тему</button>
+                  </div>
+                
             </div>
-        </form>
+        </div>
         </div>
         <div class="NewsThemesContainer">
             {% if role_id is None %}
