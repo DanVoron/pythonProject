@@ -12,6 +12,7 @@ from io import BytesIO
 from PIL import Image as PilImage
 from django.core.files.base import ContentFile
 from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.http import JsonResponse
 
 
 def index_page(request):
@@ -57,7 +58,6 @@ def delete_post(request, pk):
     post.delete()
     return redirect('index')
 
-
 def edit_post(request, pk):
     username = request.session.get('username', None)
     post = get_object_or_404(Post, pk=pk)
@@ -84,16 +84,6 @@ def edit_post(request, pk):
             Post.objects.filter(id=post.id).update(head=head, content=content, publish_datetime=dt_string, topic=topic,
                                                    image=file_url)
             return redirect('/')
-        if action == 'AddTopic':
-            Name = request.POST.get('NameTopic')
-            new_Topic = Topic(name=Name)
-            new_Topic.save()
-            redirect(request.META.get('HTTP_REFERER', '/') + '?next=' + request.path)
-        if action == 'DelTopic':
-            topik = request.POST.get('TopicList')
-            if topik:
-                Topic.objects.get(id=int(topik)).delete()
-                return redirect('/')
     return render(request, 'blog/post_edit.html',
                   {'username': username, 'post_id': post.id, 'topics': all_themes, 'post_head': post.head,
                    'post_content': post.content, 'post_topic': post.topic.name})
@@ -131,18 +121,6 @@ def post_add(request):
                             image=file_url)
             new_post.save()
             return redirect('index')
-        if action == 'AddTopic':
-            Name = request.POST.get('NameTopic')
-            print(Name + "GG")
-            new_Topic = Topic(name=Name)
-            print(new_Topic)
-            new_Topic.save()
-            redirect(request.META.get('HTTP_REFERER', '/') + '?next=' + request.path)
-        if action == 'DelTopic':
-            topik = request.POST.get('TopicList')
-            if topik:
-                Topic.objects.get(id=int(topik)).delete()
-                return redirect('/')
     return render(request, 'blog/post_add.html', context={'topics': all_themes,'MEDIA_URL':MEDIA_URL})
 
 
@@ -224,11 +202,23 @@ def index_page_themed(request, pk):
     #тут отсортировать посты по группа (по pk)
     all_posts = Post.objects.filter(topic_id=pk)
     all_themes = Topic.objects.all()
-
     return render(request, 'index.html', context={'filtrovonae': all_posts,'themeid':pk, 'data': all_posts, 'topics': all_themes, 'MEDIA_URL':MEDIA_URL})
 
 def theme_edit(request):
     all_themes = Topic.objects.all()
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        all_themes = Topic.objects.all()
+        if action == 'AddTopic':
+            Name = request.POST.get('NameTopic')
+            new_Topic = Topic(name=Name)
+            new_Topic.save()
+            redirect(request.META.get('HTTP_REFERER', '/') + '?next=' + request.path)
+        if action == 'DelTopic':
+            topik = request.POST.get('TopicList')
+            if topik:
+                Topic.objects.get(id=int(topik)).delete()
+                return redirect('/')
     return render(request, 'blog/theme_edit.html',context={'topics': all_themes})
 
 def resize_uploaded_image(image, max_width, max_height):
@@ -247,5 +237,4 @@ def resize_uploaded_image(image, max_width, max_height):
 
         new_image = ContentFile(new_image.getvalue())
         return InMemoryUploadedFile(new_image, None, image.name, image.content_type, None, None)
-
     return image
