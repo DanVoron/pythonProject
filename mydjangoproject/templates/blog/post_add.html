@@ -36,7 +36,7 @@
     </header>
     <main>
         <div class="PostContainer">
-            <form method="post" action="" class="">
+            <form method="post" action="" class="" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="HeaderContainer">
                     <div class="BackButt" onclick="document.location='{% url 'index' %}'">&lt;&lt;&lt;</div>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="NewCommentsContainer">
                     <p>Фотография</p>
-                    <input type="file" accept=".jpg,.jpeg,.png" name="" id="">
+                    <input type="file" accept=".jpg,.jpeg,.png" name="myfile1" id="">
                     <p>Название</p>
                     <input type="text" name="PostHead" placeholder="Название поста" class="PostHeader">
                     <p>Контент</p>
@@ -60,7 +60,6 @@
                     </div>
                 </div>
             </form>
-
         <form method="post" action="" class="">
             {% csrf_token %}
             <p>Редактирование тем</p>

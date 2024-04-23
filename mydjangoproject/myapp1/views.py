@@ -5,6 +5,8 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from datetime import datetime
 from mydjangoproject.settings import MEDIA_URL
+from django.shortcuts import render
+from django.core.files.storage import FileSystemStorage
 
 
 def index_page(request):
@@ -30,6 +32,7 @@ def index_page(request):
                     if user is not None:
                         request.session['role_id'] = user.role_id
                         request.session['username'] = user.username
+                        print(FileSystemStorage)
                         return render(request, 'index.html',
                                       context={'data': all_posts, 'topics': all_themes, 'role_id': user.role_id,
                                                'username': user.username,'MEDIA_URL':MEDIA_URL})
@@ -59,6 +62,10 @@ def edit_post(request, pk):
     if request.method == 'POST':
         action = request.POST.get('action')
         if action == 'Edit':
+            file = request.FILES['myfile1']
+            fs = FileSystemStorage()
+            filename = fs.save(file.name, file)
+            file_url =fs.url(filename)
             now = datetime.now()
             dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
             head = request.POST.get('PostHead')
@@ -66,7 +73,7 @@ def edit_post(request, pk):
             topik = request.POST.get('pets')
             topic = get_object_or_404(Topic, id=topik)
             Post.objects.filter(id=post.id).update(head=head, content=content, publish_datetime=dt_string, topic=topic,
-                                                   image="Imaginating ebalo")
+                                                   image=file_url)
             return render(request, 'blog/post_edit.html', context={'data': all_posts, 'topics': all_themes})
         if action == 'AddTopic':
             Name = request.POST.get('NameTopic')
@@ -97,9 +104,13 @@ def logout_wiev(request):
 def post_add(request):
     all_posts = Post.objects.all()
     all_themes = Topic.objects.all()
-    if request.method == 'POST':
+    if request.method == 'POST' and request.FILES:
         action = request.POST.get('action')
         if action == 'Add':
+            file = request.FILES['myfile1']
+            fs = FileSystemStorage()
+            filename = fs.save(file.name, file)
+            file_url =fs.url(filename)
             now = datetime.now()
             dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
             head = request.POST.get('PostHead')
@@ -107,9 +118,9 @@ def post_add(request):
             topik = request.POST.get('pets')
             topic = get_object_or_404(Topic, id=topik)
             new_post = Post(head=head, content=content, publish_datetime=dt_string, topic=topic,
-                            image="Imaginating ebalo")
+                            image=file_url)
             new_post.save()
-            return render(request, 'index.html', context={'data': all_posts, 'topics': all_themes})
+            return redirect('index')
         if action == 'AddTopic':
             Name = request.POST.get('NameTopic')
             new_Topic = Topic(name=Name)
@@ -120,7 +131,7 @@ def post_add(request):
             if topik:
                 Topic.objects.get(id=int(topik)).delete()
                 return redirect('/')
-    return render(request, 'blog/post_add.html', context={'topics': all_themes})
+    return render(request, 'blog/post_add.html', context={'topics': all_themes,'MEDIA_URL':MEDIA_URL})
 
 
 def role(request):
@@ -202,4 +213,4 @@ def index_page_themed(request, pk):
     all_posts = Post.objects.filter(topic_id=pk)
     all_themes = Topic.objects.all()
 
-    return render(request, 'index.html', context={'filtrovonae': all_posts, 'data': all_posts, 'topics': all_themes})
+    return render(request, 'index.html', context={'filtrovonae': all_posts, 'data': all_posts, 'topics': all_themes, 'MEDIA_URL':MEDIA_URL})
