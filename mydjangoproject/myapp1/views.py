@@ -67,11 +67,14 @@ def edit_post(request, pk):
     if request.method == 'POST':
         action = request.POST.get('action')
         if action == 'Edit':
-            file = request.FILES['myfile1']
-            file = resize_uploaded_image(file, 250, 250)
-            fs = FileSystemStorage()
-            filename = fs.save(file.name, file)
-            file_url =fs.url(filename)
+            if 'myfile1' in request.FILES:
+                file = request.FILES['myfile1']
+                file = resize_uploaded_image(file, 250, 250)
+                fs = FileSystemStorage()
+                filename = fs.save(file.name, file)
+                file_url = fs.url(filename)
+            else:
+                file_url = post.image
             now = datetime.now()
             dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
             head = request.POST.get('PostHead')
@@ -80,7 +83,7 @@ def edit_post(request, pk):
             topic = get_object_or_404(Topic, id=topik)
             Post.objects.filter(id=post.id).update(head=head, content=content, publish_datetime=dt_string, topic=topic,
                                                    image=file_url)
-            return render(request, 'blog/post_edit.html', context={'data': all_posts, 'topics': all_themes})
+            return redirect('/')
         if action == 'AddTopic':
             Name = request.POST.get('NameTopic')
             new_Topic = Topic(name=Name)
@@ -110,10 +113,11 @@ def logout_wiev(request):
 def post_add(request):
     all_posts = Post.objects.all()
     all_themes = Topic.objects.all()
-    if request.method == 'POST' and request.FILES:
+    if request.method == 'POST':
         action = request.POST.get('action')
         if action == 'Add':
             file = request.FILES['myfile1']
+            file = resize_uploaded_image(file, 250, 250)
             fs = FileSystemStorage()
             filename = fs.save(file.name, file)
             file_url =fs.url(filename)
@@ -129,7 +133,9 @@ def post_add(request):
             return redirect('index')
         if action == 'AddTopic':
             Name = request.POST.get('NameTopic')
+            print(Name + "GG")
             new_Topic = Topic(name=Name)
+            print(new_Topic)
             new_Topic.save()
             redirect(request.META.get('HTTP_REFERER', '/') + '?next=' + request.path)
         if action == 'DelTopic':
