@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import redirect, render, get_object_or_404
 from myapp1.models import Post, Comment, Topic, User_Accaunt, CommentForm
 from django.contrib.auth import logout
@@ -7,6 +8,10 @@ from datetime import datetime
 from mydjangoproject.settings import MEDIA_URL
 from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
+from io import BytesIO
+from PIL import Image as PilImage
+from django.core.files.base import ContentFile
+from django.core.files.uploadedfile import InMemoryUploadedFile
 
 
 def index_page(request):
@@ -63,6 +68,7 @@ def edit_post(request, pk):
         action = request.POST.get('action')
         if action == 'Edit':
             file = request.FILES['myfile1']
+            file = resize_uploaded_image(file, 250, 250)
             fs = FileSystemStorage()
             filename = fs.save(file.name, file)
             file_url =fs.url(filename)
@@ -214,3 +220,22 @@ def index_page_themed(request, pk):
     all_themes = Topic.objects.all()
 
     return render(request, 'index.html', context={'filtrovonae': all_posts, 'data': all_posts, 'topics': all_themes, 'MEDIA_URL':MEDIA_URL})
+
+def resize_uploaded_image(image, max_width, max_height):
+    size = (max_width, max_height)
+    if isinstance(image, InMemoryUploadedFile):
+        memory_image = BytesIO(image.read())
+        pil_image = PilImage.open(memory_image)
+        img_format = os.path.splitext(image.name)[1][1:].upper()
+        img_format = 'JPEG' if img_format == 'JPG' else img_format
+
+        if pil_image.width > max_width or pil_image.height > max_height:
+            pil_image.thumbnail(size)
+
+        new_image = BytesIO()
+        pil_image.save(new_image, format=img_format)
+
+        new_image = ContentFile(new_image.getvalue())
+        return InMemoryUploadedFile(new_image, None, image.name, image.content_type, None, None)
+
+    return image
