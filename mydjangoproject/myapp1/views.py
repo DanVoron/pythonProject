@@ -225,7 +225,11 @@ def index_page_themed(request, pk):
     all_posts = Post.objects.filter(topic_id=pk)
     all_themes = Topic.objects.all()
 
-    return render(request, 'index.html', context={'filtrovonae': all_posts, 'data': all_posts, 'topics': all_themes, 'MEDIA_URL':MEDIA_URL})
+    return render(request, 'index.html', context={'filtrovonae': all_posts,'themeid':pk, 'data': all_posts, 'topics': all_themes, 'MEDIA_URL':MEDIA_URL})
+
+def theme_edit(request):
+    all_themes = Topic.objects.all()
+    return render(request, 'blog/theme_edit.html',context={'topics': all_themes})
 
 def resize_uploaded_image(image, max_width, max_height):
     size = (max_width, max_height)

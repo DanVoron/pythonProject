@@ -39,8 +39,11 @@
         <div class="HeaderContainer">
             <button class="BackButt" onclick="document.location='{% url 'index' %}'">&lt;&lt;&lt;</button>
              <h2>{{ post.head }}</h2>
+             
         </div>
+        <label class="timeShow timeShow2"><b>{{ post.topic }}</b> {{post.publish_datetime| date:"d/m/Y H:i"}}</label>
         <div class="PostTextContainer">
+            
             <p>{{ post.content }}</p>
         </div>
         {% if role_id is not None %}
