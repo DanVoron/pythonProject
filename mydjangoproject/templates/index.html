@@ -40,7 +40,7 @@
             {% if role_id == 2 %}
             <div class="AdminAddingButt">
                 <button id="AddPostButt" onclick="location.href='{% url 'post_add' %}'">Добавить <br> новость</button>
-                <button id="AddPostButt" onclick="location.href='{% url 'theme_edit' %}'">Добавить <br> Тему</button>
+                <button id="AddPostButt" onclick="location.href='{% url 'theme_edit' %}'">Редаткирование <br> тем</button>
                 <p >Добро пожаловать, Админ!</p>
             </div>
             {% endif %}
@@ -99,7 +99,7 @@
                 {%for i in topics%}
                 <a class="archons {% if i.pk == themeid %} PerehodA {% endif %}" href="{% url 'index_page_themed' i.pk %}" > {{i.name}}</a>
                 {%endfor%}
-                <a class="archons {% if themeid is None %} PerehodA {% endif %}" href="{% url 'index' %}" >Сбросить тему</a>
+                <a class="archons {% if themeid is None %} PerehodA {% endif %}" href="{% url 'index' %}" >Все темы</a>
             </div>
         </div>
     </main>

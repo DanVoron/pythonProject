@@ -96,7 +96,7 @@
                 {% csrf_token %}
                 <p>Добро пожаловать, {{ username }}</p>
                 <input type="hidden" name="next" value="{{ request.path }}">
-                <button type="submit">Выйти</button>
+                <button type="submit" class="AuthButt">Выйти</button>
             </form>
         </div>
         {% endif %}
@@ -104,8 +104,9 @@
         <p><b>Выбрать тему:</b></p>
         <div class="ThemesContainer">
             {%for i in topics%}
-            <a class="archons" href="{% url 'index_page_themed' i.pk %}" > {{i.name}}</a>
+            <a class="archons {% if i.pk == themeid %} PerehodA {% endif %}" href="{% url 'index_page_themed' i.pk %}" > {{i.name}}</a>
             {%endfor%}
+            <a class="archons" href="{% url 'index' %}" >Все темы</a>
         </div>
     </div>
     </main>
