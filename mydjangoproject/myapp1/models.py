@@ -45,8 +45,10 @@ class Post(models.Model):
     image = models.ImageField(upload_to='images/')
 
     class Meta:
+        ordering = ('publish_datetime',)
         managed = False
         db_table = 'post'
+
 
     def __str__(self):
         return self.head

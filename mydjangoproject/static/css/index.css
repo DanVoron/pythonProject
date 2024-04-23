@@ -195,6 +195,7 @@ main{
 #News{
     width: 200px;
     height: 100%;
+    border-radius: 20px 0 0 20px;
 }
 .PostName{
     margin-left: 20px;
@@ -272,7 +273,7 @@ main{
 }
 .postss{
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
 }
 .regMenu{
     display: flex;
@@ -353,6 +354,7 @@ main{
 .PostButtsPhotos{
     width: 90%;
     height: 90%;
+
 }
 .AdminAddingButt{
 
