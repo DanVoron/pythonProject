@@ -63,23 +63,25 @@
                     </div>
                 </div>
             </form>
-            <div class="themechanger">
-                <div class="vibiritetemu">
-                    <label>Выберите тему</label>
-                    <select id="themes-select" name="TopicList">
-                        <option value="" disabled selected>Выберите тему</option>
-                        {%for i in topics%}
-                        <option value="{{ i.id }}">{{ i.name }}</option>
-                        {%endfor%}
-                      </select>
+            <form method="post" action="" class="themeeditor">
+                {% csrf_token %}
+                <div class="themechanger">
+                    <div class="vibiritetemu">
+                        <label>Выберите тему</label>
+                        <select id="themes-select" name="TopicList">
+                            <option value="" disabled selected>Выберите тему</option>
+                            {%for i in topics%}
+                            <option value="{{ i.id }}">{{ i.name }}</option>
+                            {%endfor%}
+                          </select>
+                    </div>
+                      <div class="newtheme">
+                        <label>Новое название темы</label>
+                        <input name="InpEditTopic" type="text" placeholder="Новое название темы" class="lolgege">
+                        <button class="ThemesBUTT ggz" id="DelTopicBtn" name="action" value="EditTopic">Изменить тему</button>
+                      </div>
                 </div>
-                  <div class="newtheme">
-                    <label>Новое название темы</label>
-                    <input type="text" placeholder="Новое название темы" class="lolgege">
-                    <button class="ThemesBUTT ggz" id="DelTopicBtn" name="action" value="DelTopic">Изменить тему</button>
-                  </div>
-                
-            </div>
+            </form>
         </div>
         </div>
         <div class="NewsThemesContainer">

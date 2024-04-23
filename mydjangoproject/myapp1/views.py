@@ -59,35 +59,38 @@ def delete_post(request, pk):
     return redirect('index')
 
 def edit_post(request, pk):
+    role_id = request.session.get('role_id', None)
     username = request.session.get('username', None)
     post = get_object_or_404(Post, pk=pk)
     all_themes = Topic.objects.all()
     all_posts = Post.objects.all()
     username = request.session.get('username', None)
-    if request.method == 'POST':
-        action = request.POST.get('action')
-        if action == 'Edit':
-            if 'myfile1' in request.FILES:
-                file = request.FILES['myfile1']
-                file = resize_uploaded_image(file, 250, 250)
-                fs = FileSystemStorage()
-                filename = fs.save(file.name, file)
-                file_url = fs.url(filename)
-            else:
-                file_url = post.image
-            now = datetime.now()
-            dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
-            head = request.POST.get('PostHead')
-            content = request.POST.get('PostBudy')
-            topik = request.POST.get('pets')
-            topic = get_object_or_404(Topic, id=topik)
-            Post.objects.filter(id=post.id).update(head=head, content=content, publish_datetime=dt_string, topic=topic,
-                                                   image=file_url)
-            return redirect('/')
-    return render(request, 'blog/post_edit.html',
-                  {'username': username, 'post_id': post.id, 'topics': all_themes, 'post_head': post.head,
-                   'post_content': post.content, 'post_topic': post.topic.name})
-
+    if role_id == 2:
+        if request.method == 'POST':
+            action = request.POST.get('action')
+            if action == 'Edit':
+                if 'myfile1' in request.FILES:
+                    file = request.FILES['myfile1']
+                    file = resize_uploaded_image(file, 250, 250)
+                    fs = FileSystemStorage()
+                    filename = fs.save(file.name, file)
+                    file_url = fs.url(filename)
+                else:
+                    file_url = post.image
+                now = datetime.now()
+                dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
+                head = request.POST.get('PostHead')
+                content = request.POST.get('PostBudy')
+                topik = request.POST.get('pets')
+                topic = get_object_or_404(Topic, id=topik)
+                Post.objects.filter(id=post.id).update(head=head, content=content, publish_datetime=dt_string, topic=topic,
+                                                       image=file_url)
+                return redirect('/')
+        return render(request, 'blog/post_edit.html',
+                      {'username': username, 'post_id': post.id, 'topics': all_themes, 'post_head': post.head,
+                       'post_content': post.content, 'post_topic': post.topic.name})
+    else:
+        return redirect('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
 
 def logout_wiev(request):
     if request.method == 'POST':
@@ -103,26 +106,29 @@ def logout_wiev(request):
 def post_add(request):
     all_posts = Post.objects.all()
     all_themes = Topic.objects.all()
-    if request.method == 'POST':
-        action = request.POST.get('action')
-        if action == 'Add':
-            file = request.FILES['myfile1']
-            file = resize_uploaded_image(file, 250, 250)
-            fs = FileSystemStorage()
-            filename = fs.save(file.name, file)
-            file_url =fs.url(filename)
-            now = datetime.now()
-            dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
-            head = request.POST.get('PostHead')
-            content = request.POST.get('PostBudy')
-            topik = request.POST.get('pets')
-            topic = get_object_or_404(Topic, id=topik)
-            new_post = Post(head=head, content=content, publish_datetime=dt_string, topic=topic,
-                            image=file_url)
-            new_post.save()
-            return redirect('index')
-    return render(request, 'blog/post_add.html', context={'topics': all_themes,'MEDIA_URL':MEDIA_URL})
-
+    role_id = request.session.get('role_id', None)
+    if role_id == 2:
+        if request.method == 'POST':
+            action = request.POST.get('action')
+            if action == 'Add':
+                file = request.FILES['myfile1']
+                file = resize_uploaded_image(file, 250, 250)
+                fs = FileSystemStorage()
+                filename = fs.save(file.name, file)
+                file_url =fs.url(filename)
+                now = datetime.now()
+                dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
+                head = request.POST.get('PostHead')
+                content = request.POST.get('PostBudy')
+                topik = request.POST.get('pets')
+                topic = get_object_or_404(Topic, id=topik)
+                new_post = Post(head=head, content=content, publish_datetime=dt_string, topic=topic,
+                                image=file_url)
+                new_post.save()
+                return redirect('index')
+        return render(request, 'blog/post_add.html', context={'topics': all_themes,'MEDIA_URL':MEDIA_URL})
+    else:
+        return redirect('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
 
 def role(request):
     role_id = request.session.get('role_id', None)
@@ -202,24 +208,63 @@ def index_page_themed(request, pk):
     #тут отсортировать посты по группа (по pk)
     all_posts = Post.objects.filter(topic_id=pk)
     all_themes = Topic.objects.all()
+    role_id = request.session.get('role_id', None)
+    username = request.GET.get('username', None)
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        if action == 'Reg':
+            name = request.POST.get('Username')
+            login = request.POST.get('Login')
+            password = request.POST.get('Password')
+            new_user = User_Accaunt(username=name, login=login, password=password, role_id=1)
+            new_user.save()
+            return render(request, 'index.html',
+                          context={'data': all_posts, 'topics': all_themes, 'MEDIA_URL': MEDIA_URL})
+        elif action == 'Login':
+            if role_id is None:
+                username = request.POST.get('username')
+                password = request.POST.get('password')
+                try:
+                    user = User_Accaunt.objects.get(login=username, password=password)
+                    if user is not None:
+                        request.session['role_id'] = user.role_id
+                        request.session['username'] = user.username
+                        print(FileSystemStorage)
+                        return render(request, 'index.html',
+                                      context={'data': all_posts, 'topics': all_themes, 'role_id': user.role_id,
+                                               'username': user.username, 'MEDIA_URL': MEDIA_URL})
+                    else:
+                        return redirect('/')
+                except User_Accaunt.DoesNotExist:
+                    return redirect('/')
+            else:
+                return logout_wiev(request)
     return render(request, 'index.html', context={'filtrovonae': all_posts,'themeid':pk, 'data': all_posts, 'topics': all_themes, 'MEDIA_URL':MEDIA_URL})
 
 def theme_edit(request):
     all_themes = Topic.objects.all()
-    if request.method == 'POST':
-        action = request.POST.get('action')
-        all_themes = Topic.objects.all()
-        if action == 'AddTopic':
-            Name = request.POST.get('NameTopic')
-            new_Topic = Topic(name=Name)
-            new_Topic.save()
-            redirect(request.META.get('HTTP_REFERER', '/') + '?next=' + request.path)
-        if action == 'DelTopic':
-            topik = request.POST.get('TopicList')
-            if topik:
-                Topic.objects.get(id=int(topik)).delete()
-                return redirect('/')
-    return render(request, 'blog/theme_edit.html',context={'topics': all_themes})
+    role_id = request.session.get('role_id', None)
+    if role_id == 2:
+        if request.method == 'POST':
+            action = request.POST.get('action')
+            all_themes = Topic.objects.all()
+            if action == 'AddTopic':
+                Name = request.POST.get('NameTopic')
+                new_Topic = Topic(name=Name)
+                new_Topic.save()
+                redirect(request.META.get('HTTP_REFERER', '/') + '?next=' + request.path)
+            if action == 'DelTopic':
+                topik = request.POST.get('TopicList')
+                if topik:
+                    Topic.objects.get(id=int(topik)).delete()
+                    redirect(request.META.get('HTTP_REFERER', '/') + '?next=' + request.path)
+            if action == 'EditTopic':
+                Name = request.POST.get('InpEditTopic')
+                topik = request.POST.get('TopicList')
+                Topic.objects.filter(id=int(topik)).update(name=Name)
+        return render(request, 'blog/theme_edit.html',context={'topics': all_themes})
+    else:
+        return redirect('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
 
 def resize_uploaded_image(image, max_width, max_height):
     size = (max_width, max_height)
