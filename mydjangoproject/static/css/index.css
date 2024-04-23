@@ -272,7 +272,7 @@ main{
 }
 .postss{
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
 }
 .regMenu{
     display: flex;
