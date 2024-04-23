@@ -99,7 +99,7 @@
                 {%for i in topics%}
                 <a class="archons {% if i.pk == themeid %} PerehodA {% endif %}" href="{% url 'index_page_themed' i.pk %}" > {{i.name}}</a>
                 {%endfor%}
-                <a class="archons" href="{% url 'index' %}" >Сбросить тему</a>
+                <a class="archons {% if themeid is None %} PerehodA {% endif %}" href="{% url 'index' %}" >Сбросить тему</a>
             </div>
         </div>
     </main>

@@ -203,7 +203,7 @@ main{
 .PostName{
     margin-left: 20px;
     max-height: 50px;
-    width: 700px;
+    width: 550px;
     text-overflow: ellipsis;
     text-overflow: none;
     white-space: nowrap;
