@@ -231,15 +231,19 @@ margin-left: 20px;
 }
 .DelComments{
     border-radius: 20px;
-    width: 20%;
-    height: 20%;
+    width: 70%;
+    height: 90%;
+    margin-right: 15px;
 }
 .h2post{
-    word-wrap: break-word;
     display: flex;
     align-items: center;
 }
 .postimgae{
     width: 100px;
     height: 100px;
+}
+.flexlol{
+    display: flex;
+    align-items: center;
 }

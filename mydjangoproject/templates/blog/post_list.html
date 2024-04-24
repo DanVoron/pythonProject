@@ -63,7 +63,7 @@
             <div class="CommentItem">
                 <div class="UserContainer">
                     <label class="UserLabel">{{ comment.user.username }}</label>
-                    <label class="timeShow">
+                    <label class="timeShow flexlol">
                         {% if role_id == 2 %}
                         <form method="POST" action="{% url 'comment-delete' post.pk comment.pk %}">
                             {% csrf_token %}
