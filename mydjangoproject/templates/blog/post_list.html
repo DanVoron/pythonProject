@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="{% static 'img\logoforsite.svg' %}">
@@ -38,7 +38,9 @@
     <div class="PostContainer">
         <div class="HeaderContainer">
             <button class="BackButt" onclick="document.location='{% url 'index' %}'">&lt;&lt;&lt;</button>
-             <h2>{{ post.head }}</h2>
+             <h2 class="h2post">
+                <img class="postimgae" src="{{ post.image }}" alt="postimage">
+                {{ post.head }}</h2>
              
         </div>
         <label class="timeShow timeShow2"><b>{{ post.topic }}</b> {{post.publish_datetime| date:"d/m/Y H:i"}}</label>
@@ -64,7 +66,9 @@
                 <div class="UserContainer">
                     <label class="UserLabel">{{ comment.user.username }}</label>
                     
-                    <label class="timeShow"> <Button class="DelComments">ГОЙДА!</Button> {{comment.publish_datetime | date:"d/m/Y H:i"}}</label>
+                    <label class="timeShow"> <Button class="DelComments">
+                        <img class="PostButtsPhotos" src="{% static 'img/traaash.svg' %}" alt="del">
+                    </Button> {{comment.publish_datetime | date:"d/m/Y H:i"}}</label>
                 </div>
                 <label class="CommLabel">{{ comment.content }}</label>
             </div>

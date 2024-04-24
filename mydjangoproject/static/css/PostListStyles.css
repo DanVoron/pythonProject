@@ -230,5 +230,16 @@ h2{
 margin-left: 20px;
 }
 .DelComments{
-
+    border-radius: 20px;
+    width: 20%;
+    height: 20%;
+}
+.h2post{
+    word-wrap: break-word;
+    display: flex;
+    align-items: center;
+}
+.postimgae{
+    width: 100px;
+    height: 100px;
 }
