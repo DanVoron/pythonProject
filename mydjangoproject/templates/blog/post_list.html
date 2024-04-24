@@ -63,7 +63,8 @@
             <div class="CommentItem">
                 <div class="UserContainer">
                     <label class="UserLabel">{{ comment.user.username }}</label>
-                    <label class="timeShow">{{comment.publish_datetime | date:"d/m/Y H:i"}}</label>
+                    
+                    <label class="timeShow"> <Button class="DelComments">ГОЙДА!</Button> {{comment.publish_datetime | date:"d/m/Y H:i"}}</label>
                 </div>
                 <label class="CommLabel">{{ comment.content }}</label>
             </div>
