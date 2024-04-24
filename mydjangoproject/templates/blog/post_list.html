@@ -66,9 +66,13 @@
                 <div class="UserContainer">
                     <label class="UserLabel">{{ comment.user.username }}</label>
                     
-                    <label class="timeShow"> <Button class="DelComments">
+                    <label class="timeShow">
+                        {% if role_id == 2 %}
+                         <Button class="DelComments">
                         <img class="PostButtsPhotos" src="{% static 'img/traaash.svg' %}" alt="del">
-                    </Button> {{comment.publish_datetime | date:"d/m/Y H:i"}}</label>
+                    </Button>{% endif %}
+                     {{comment.publish_datetime | date:"d/m/Y H:i"}}
+                </label>
                 </div>
                 <label class="CommLabel">{{ comment.content }}</label>
             </div>
