@@ -12,8 +12,15 @@ from io import BytesIO
 from PIL import Image as PilImage
 from django.core.files.base import ContentFile
 from django.core.files.uploadedfile import InMemoryUploadedFile
-from django.http import JsonResponse
+from django.urls import reverse_lazy
+from django.views.generic.edit import DeleteView
 
+
+
+class CommentDeleteView(DeleteView):
+    model = Comment
+    def get_success_url(self):
+        return reverse_lazy('post_list', kwargs={'pk': self.object.post.pk})
 
 def index_page(request):
     all_posts = Post.objects.all()

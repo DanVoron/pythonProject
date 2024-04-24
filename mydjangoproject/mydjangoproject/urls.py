@@ -19,6 +19,8 @@ from django.urls import path
 from myapp1.views import *
 from django.conf import settings
 from django.conf.urls.static import static
+from django.urls import path
+from myapp1.views import CommentDeleteView
 
 app_name='myapp1'
 
@@ -32,5 +34,6 @@ urlpatterns = [
     path('delete_post/<int:pk>/', delete_post, name='delete_post'),
     path('postedit/<int:pk>/', edit_post, name='post_edit'),
     path('postadd/',post_add,name='post_add'),
-    path('theme_edit/',theme_edit,name='theme_edit')
+    path('theme_edit/',theme_edit,name='theme_edit'),
+    path('post/<int:post_pk>/comment/delete/<int:pk>/', CommentDeleteView.as_view(), name='comment-delete')
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

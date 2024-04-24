@@ -45,7 +45,6 @@
         </div>
         <label class="timeShow timeShow2"><b>{{ post.topic }}</b> {{post.publish_datetime| date:"d/m/Y H:i"}}</label>
         <div class="PostTextContainer">
-            
             <p>{{ post.content }}</p>
         </div>
         {% if role_id is not None %}
@@ -56,7 +55,6 @@
             <button type="submit" class="AddCommButt" name="action" value="AddCom">Добавить комментарий</button>
         </form>
         {%endif%}
-
         {% if role_id is None %}
         <p class="gege">Чтоб оставлять комментарий войдите в аккаунт</p>
         {%endif%}
@@ -65,12 +63,14 @@
             <div class="CommentItem">
                 <div class="UserContainer">
                     <label class="UserLabel">{{ comment.user.username }}</label>
-                    
                     <label class="timeShow">
                         {% if role_id == 2 %}
-                         <Button class="DelComments">
-                        <img class="PostButtsPhotos" src="{% static 'img/traaash.svg' %}" alt="del">
-                    </Button>{% endif %}
+                        <form method="POST" action="{% url 'comment-delete' post.pk comment.pk %}">
+                            {% csrf_token %}
+                            <button type="submit" class="DelComments">
+                                <img class="PostButtsPhotos" src="{% static 'img/traaash.svg' %}" alt="del">
+                            </button>
+                        </form>{% endif %}
                      {{comment.publish_datetime | date:"d/m/Y H:i"}}
                 </label>
                 </div>
